@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banco de Questões — Protozoários I e II · CNBA0309</title>
+<style>
+  :root{
+    --primary:#0E4C46; --primaryDk:#0A3A35; --deep:#07211E;
+    --gold:#E5A72C; --goldDk:#B9831A; --coral:#D64C2F; --coralDk:#A9371F;
+    --sage:#3E7C68; --sageMid:#6FA088; --sageLt:#D9E7E0;
+    --panel:#F1F5F3; --tealTint:#DDEBE7; --goldTint:#FBEED1; --coralTint:#F9DED4; --sageTint:#DCEAE4;
+    --ink:#15302B; --body:#2B3E3A; --muted:#6A7B77; --line:#D3E0DB;
+    --ok:#2F7D57; --okBg:#E7F3EC; --bad:#C0392B; --badBg:#FBE9E7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--body);background:linear-gradient(160deg,#F7FAF9 0%,#EEF4F1 100%);min-height:100vh;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:24px 18px 60px}
+  .serif{font-family:Georgia,"Times New Roman",serif}
+  .topbar{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+  .brandtag{font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--goldDk);text-transform:uppercase}
+  .brandtag b{color:var(--primary)}
+  .plink{margin-left:auto;font-size:12.5px;font-weight:700;color:var(--primary);background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:6px}
+  .plink:hover{border-color:var(--primary)}
+  .card{background:#fff;border-radius:18px;box-shadow:0 10px 34px rgba(10,58,53,.10),0 2px 6px rgba(10,58,53,.05);padding:30px 30px 34px;border:1px solid #E4EDE9}
+  h1.title{font-size:32px;line-height:1.12;color:var(--primary);font-weight:800;letter-spacing:-.3px}
+  .subtitle{color:var(--muted);font-size:15.5px;margin-top:10px;max-width:62ch}
+  .rule{height:4px;width:64px;background:var(--gold);border-radius:3px;margin:16px 0 22px}
+  .stats{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0 20px}
+  .stat{background:var(--panel);border-radius:12px;padding:12px 16px;min-width:110px;flex:1}
+  .stat .n{font-size:26px;font-weight:800;color:var(--primary);font-family:Georgia,serif}
+  .stat .l{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-top:2px}
+  .seclabel{font-size:12.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--primaryDk);margin:22px 0 10px}
+  /* identificação */
+  .idrow{display:flex;gap:12px;flex-wrap:wrap}
+  .field{flex:1;min-width:180px;display:flex;flex-direction:column;gap:5px}
+  .field label{font-size:12.5px;font-weight:700;color:var(--body)}
+  .field label .req{color:var(--coral)}
+  .field input{border:1.5px solid var(--line);border-radius:11px;padding:12px 14px;font-size:15px;color:var(--ink);font-family:inherit;transition:.15s;background:#fff}
+  .field input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(14,76,70,.10)}
+  .idnote{font-size:12.5px;color:var(--muted);margin-top:8px;display:flex;align-items:center;gap:7px}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{border:1.5px solid var(--line);background:#fff;color:var(--body);border-radius:999px;padding:8px 15px;font-size:13.5px;cursor:pointer;user-select:none;transition:.15s;font-weight:600;display:inline-flex;align-items:center;gap:7px}
+  .chip .dot{width:9px;height:9px;border-radius:50%;background:var(--tag,#888)}
+  .chip:hover{border-color:var(--sageMid)}
+  .chip.on{background:var(--primary);border-color:var(--primary);color:#fff}
+  .chip.on .dot{background:#fff}
+  .chiprow{display:flex;gap:8px;margin-bottom:9px;flex-wrap:wrap}
+  .minibtn{font-size:12px;font-weight:700;color:var(--primary);background:var(--panel);border:none;border-radius:999px;padding:6px 12px;cursor:pointer}
+  .minibtn:hover{background:var(--tealTint)}
+  .modes{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+  .mode{flex:1;min-width:200px;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;transition:.15s;background:#fff}
+  .mode:hover{border-color:var(--sageMid)}
+  .mode.on{border-color:var(--primary);background:var(--tealTint)}
+  .mode h4{font-size:15px;color:var(--ink);margin-bottom:3px;display:flex;align-items:center;gap:8px}
+  .mode p{font-size:12.5px;color:var(--muted)}
+  .mode .ic{font-size:17px}
+  .numsel{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:4px}
+  .numbtn{border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:8px 16px;font-size:14px;font-weight:700;cursor:pointer;color:var(--body);transition:.15s}
+  .numbtn:hover{border-color:var(--sageMid)}
+  .numbtn.on{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+  .btn{border:none;border-radius:12px;padding:15px 26px;font-size:16px;font-weight:700;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:9px}
+  .btn-primary{background:var(--primary);color:#fff}
+  .btn-primary:hover{background:var(--primaryDk)}
+  .btn-primary:disabled{opacity:.4;cursor:not-allowed}
+  .btn-ghost{background:#fff;color:var(--primary);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--primary)}
+  .btn-gold{background:var(--gold);color:var(--ink)}
+  .btn-gold:hover{background:var(--goldDk);color:#fff}
+  .btn-sm{padding:10px 16px;font-size:14px;border-radius:10px}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;align-items:center}
+  .qtop{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+  .whoami{font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:2px}
+  .whoami b{color:var(--primary)}
+  .progresswrap{height:8px;background:var(--panel);border-radius:6px;overflow:hidden;margin:10px 0 22px}
+  .progress{height:100%;background:linear-gradient(90deg,var(--sage),var(--primary));width:0;transition:width .3s}
+  .qcount{font-size:13.5px;color:var(--muted);font-weight:600}
+  .score{font-size:13.5px;font-weight:700;color:var(--primary)}
+  .temaTag{font-size:11.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#fff;background:var(--tag,var(--primary));padding:5px 12px;border-radius:999px}
+  .qtext{font-size:19px;color:var(--ink);font-weight:600;line-height:1.4;margin:14px 0 20px;font-family:Georgia,serif}
+  .opts{display:flex;flex-direction:column;gap:11px}
+  .opt{display:flex;gap:13px;align-items:flex-start;border:1.5px solid var(--line);background:#fff;border-radius:13px;padding:14px 16px;cursor:pointer;transition:.13s;text-align:left;font-size:15.5px;color:var(--body);width:100%}
+  .opt:hover:not(.locked){border-color:var(--sageMid);background:#FBFDFC}
+  .opt .letter{flex:none;width:30px;height:30px;border-radius:50%;background:var(--panel);color:var(--primary);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;transition:.13s}
+  .opt.correct{border-color:var(--ok);background:var(--okBg)}
+  .opt.correct .letter{background:var(--ok);color:#fff}
+  .opt.wrong{border-color:var(--bad);background:var(--badBg)}
+  .opt.wrong .letter{background:var(--bad);color:#fff}
+  .opt.locked{cursor:default}
+  .opt.dim{opacity:.6}
+  .opt .mark{margin-left:auto;font-weight:800;font-size:18px;align-self:center}
+  .explain{margin-top:18px;border-radius:14px;padding:16px 18px 18px;background:var(--goldTint);border:1px solid #EAD9AE;display:none;animation:fade .25s}
+  .explain.show{display:block}
+  .explain .head{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--goldDk);display:flex;align-items:center;gap:8px;margin-bottom:7px}
+  .explain .ans{font-weight:800;color:var(--ok)}
+  .explain .ans.no{color:var(--bad)}
+  .explain p{font-size:14.5px;color:var(--body);line-height:1.55}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+  .navrow{display:flex;justify-content:space-between;align-items:center;margin-top:22px;gap:12px;flex-wrap:wrap}
+  .hint{font-size:12.5px;color:var(--muted)}
+  .scorebig{font-family:Georgia,serif;font-size:60px;font-weight:800;line-height:1;color:var(--primary)}
+  .scorebig small{font-size:26px;color:var(--muted)}
+  .resmsg{font-size:17px;color:var(--ink);font-weight:600;margin-top:6px}
+  .statusline{margin-top:14px;font-size:13.5px;font-weight:600;border-radius:10px;padding:11px 14px;display:inline-flex;align-items:center;gap:8px}
+  .statusline.ok{background:var(--okBg);color:var(--ok)}
+  .statusline.bad{background:var(--badBg);color:var(--bad)}
+  .statusline.muted{background:var(--panel);color:var(--muted)}
+  .bars{margin:20px 0 8px;display:flex;flex-direction:column;gap:12px}
+  .bar .row{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:5px;color:var(--body)}
+  .bar .track{height:10px;background:var(--panel);border-radius:6px;overflow:hidden}
+  .bar .fill{height:100%;border-radius:6px}
+  .review{margin-top:12px;display:flex;flex-direction:column;gap:12px}
+  .rev{border:1px solid var(--line);border-left:5px solid var(--bad);border-radius:12px;padding:14px 16px;background:#fff}
+  .rev.ok{border-left-color:var(--ok)}
+  .rev .q{font-weight:700;color:var(--ink);font-size:15px;margin-bottom:6px}
+  .rev .line{font-size:13.5px;margin:2px 0}
+  .rev .you{color:var(--bad)} .rev .cor{color:var(--ok)}
+  .rev .cm{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .rev .tt{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--tag,var(--primary))}
+  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:26px;line-height:1.6}
+  .hide{display:none!important}
+  /* modal professor */
+  .modal{position:fixed;inset:0;background:rgba(7,33,30,.55);display:flex;align-items:flex-start;justify-content:center;padding:34px 16px;z-index:50;overflow:auto}
+  .modalcard{background:#fff;border-radius:18px;max-width:820px;width:100%;padding:26px 26px 30px;box-shadow:0 24px 60px rgba(7,33,30,.4)}
+  .modalhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+  .modalhead h2{font-size:22px;color:var(--primary);font-weight:800}
+  .xbtn{border:none;background:var(--panel);width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer;color:var(--body)}
+  .xbtn:hover{background:var(--coralTint);color:var(--coralDk)}
+  .rtable{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+  .rtable th{background:var(--primary);color:#fff;text-align:left;padding:9px 10px;font-weight:700;font-size:12px;position:sticky;top:0}
+  .rtable td{padding:8px 10px;border-bottom:1px solid var(--line);color:var(--body)}
+  .rtable tr:nth-child(even) td{background:var(--panel)}
+  .rtable .pct{font-weight:800}
+  .tablewrap{max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:12px;margin-top:10px}
+  .empty{padding:26px;text-align:center;color:var(--muted);font-size:14px}
+  .fsbox{background:var(--tealTint);border:1px solid #C9E0D8;border-radius:14px;padding:16px 18px;margin-top:6px}
+  .fsbox h3{font-size:14px;color:var(--primaryDk);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .fsbox p{font-size:12.5px;color:var(--body);margin-bottom:10px;line-height:1.5}
+  .fsinput{display:flex;gap:10px;flex-wrap:wrap}
+  .fsinput input{flex:1;min-width:240px;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;font-size:14px;font-family:inherit}
+  .fsinput input:focus{outline:none;border-color:var(--primary)}
+  .pgate{max-width:340px;margin:8px auto 0;text-align:center}
+  .pgate input{width:150px;text-align:center;letter-spacing:6px;font-size:22px;border:1.5px solid var(--line);border-radius:12px;padding:12px;font-family:inherit;margin:12px 0}
+  .pgate input:focus{outline:none;border-color:var(--primary)}
+  @media(max-width:560px){.card{padding:22px 18px}h1.title{font-size:25px}.qtext{font-size:17px}.modalcard{padding:20px 16px}}
+  @media print{.plink,.actions,.no-print{display:none!important}body{background:#fff}.modal{position:static;background:#fff;padding:0}.modalcard{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <span class="brandtag"><b>UFMA · CCBa</b> · CNBA0309 — Parasitologia com Ênfase em Doenças Tropicais</span>
+    <button class="plink" onclick="openProf()">🔒 Área do professor</button>
+  </div>
+
+  <!-- ===== START ===== -->
+  <section id="start" class="card">
+    <h1 class="title serif">Banco de Questões</h1>
+    <p class="subtitle">Sete blocos para escolher: <b>Introdução à Parasitologia com Imunologia</b>, <b>Protozoários I</b> (rizópodes e flagelados), <b>Protozoários II</b> (hemoflagelados), <b>Protozoários III</b> (Apicomplexa e Cryptosporidium), <b>Helmintos I</b> (nematódeos intestinais), <b>Helmintos II</b> (teciduais e filárias) e <b>Helmintos III</b> (cestódeos e trematódeos). Questões objetivas com correção na hora e resposta comentada.</p>
+    <div class="rule"></div>
+    <div class="stats">
+      <div class="stat"><div class="n" id="stTotal">–</div><div class="l">questões</div></div>
+      <div class="stat"><div class="n" id="stTemas">–</div><div class="l">temas</div></div>
+      <div class="stat"><div class="n">7</div><div class="l">aulas</div></div>
+      <div class="stat"><div class="n">100%</div><div class="l">comentadas</div></div>
+    </div>
+
+    <div class="seclabel">Identificação do aluno</div>
+    <div class="idrow">
+      <div class="field"><label>Nome completo <span class="req">*</span></label><input id="fNome" type="text" placeholder="Seu nome" autocomplete="name" oninput="updateStart()"></div>
+      <div class="field"><label>Matrícula</label><input id="fMat" type="text" placeholder="opcional" autocomplete="off"></div>
+      <div class="field"><label>Turma</label><input id="fTurma" type="text" placeholder="opcional" autocomplete="off"></div>
+    </div>
+    <div class="idnote">👤 Seu nome é registrado para a professora ver quem respondeu. Ao finalizar, o resultado é enviado automaticamente.</div>
+
+    <div class="seclabel">1 · Escolha os temas</div>
+    <div class="chiprow">
+      <button class="minibtn" onclick="selAll(true)">Todos</button>
+      <button class="minibtn" onclick="selAula('Intro')">Só Introdução</button>
+      <button class="minibtn" onclick="selAula('I')">Só Protozoários I</button>
+      <button class="minibtn" onclick="selAula('II')">Só Protozoários II</button>
+      <button class="minibtn" onclick="selAula('III')">Só Protozoários III</button>
+      <button class="minibtn" onclick="selAula('H-I')">Só Helmintos I</button>
+      <button class="minibtn" onclick="selAula('H-II')">Só Helmintos II</button>
+      <button class="minibtn" onclick="selAula('H-III')">Só Helmintos III</button>
+      <button class="minibtn" onclick="selAll(false)">Limpar</button>
+    </div>
+    <div class="chips" id="temaChips"></div>
+
+    <div class="seclabel">2 · Modo</div>
+    <div class="modes">
+      <div class="mode on" data-mode="estudo" onclick="setMode('estudo')">
+        <h4><span class="ic">📖</span> Estudo</h4>
+        <p>Correção e comentário aparecem logo após cada resposta.</p>
+      </div>
+      <div class="mode" data-mode="prova" onclick="setMode('prova')">
+        <h4><span class="ic">📝</span> Prova</h4>
+        <p>Sem feedback durante o teste; o gabarito comentado vem no final.</p>
+      </div>
+    </div>
+
+    <div class="seclabel">3 · Quantas questões</div>
+    <div class="numsel" id="numSel"></div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="startBtn" onclick="startQuiz()">Começar ▸</button>
+      <label style="display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);cursor:pointer">
+        <input type="checkbox" id="shuffleChk" checked style="width:17px;height:17px;accent-color:var(--primary)"> Embaralhar questões e alternativas
+      </label>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section id="quiz" class="card hide">
+    <div class="whoami" id="whoami"></div>
+    <div class="qtop">
+      <span class="qcount" id="qcount">Questão 1 de 10</span>
+      <span class="temaTag" id="qtema">Tema</span>
+      <span class="score" id="qscore">Acertos: 0</span>
+    </div>
+    <div class="progresswrap"><div class="progress" id="prog"></div></div>
+    <div class="qtext serif" id="qtext">…</div>
+    <div class="opts" id="opts"></div>
+    <div class="explain" id="explain">
+      <div class="head"><span id="exIcon">✔</span> <span id="exVerdict" class="ans">Resposta comentada</span></div>
+      <p id="exText"></p>
+    </div>
+    <div class="navrow">
+      <span class="hint" id="hint">Dica: use as teclas 1–4 para responder e Enter para avançar.</span>
+      <button class="btn btn-primary hide" id="nextBtn" onclick="nextQ()">Próxima ▸</button>
+    </div>
+  </section>
+
+  <!-- ===== RESULTS ===== -->
+  <section id="results" class="card hide">
+    <div class="seclabel">Resultado de <b id="rWho" style="color:var(--primary)">—</b></div>
+    <div class="scorebig"><span id="rPct">0</span><small>%</small></div>
+    <div class="resmsg" id="rMsg">—</div>
+    <div class="stat" style="margin-top:14px;display:inline-block"><span id="rRaw">0 de 0</span> acertos · modo <b id="rMode">estudo</b></div>
+    <div id="sendStatus" class="statusline muted no-print">—</div>
+    <div class="seclabel" style="margin-top:26px">Desempenho por tema</div>
+    <div class="bars" id="bars"></div>
+    <div class="seclabel" style="margin-top:24px">Revisão comentada</div>
+    <div class="review" id="review"></div>
+    <div class="actions">
+      <button class="btn btn-primary" onclick="restart('all')">↻ Refazer tudo</button>
+      <button class="btn btn-gold" id="redoWrong" onclick="restart('wrong')">Refazer só as erradas</button>
+      <button class="btn btn-ghost" onclick="toStart()">◂ Início (novo aluno)</button>
+    </div>
+  </section>
+
+  <footer>
+    Profa. Dra. Kerolayne de Melo Nogueira · Licenciatura em Ciências Naturais — Biologia · 2026.3<br>
+    Introdução à Parasitologia com Imunologia · Protozoários I (Entamoeba, Giardia, Trichomonas) · Protozoários II (Leishmania, Trypanosoma cruzi) · Protozoários III (Plasmodium, Toxoplasma).
+  </footer>
+</div>
+
+<!-- ===== MODAL PROFESSOR ===== -->
+<div id="profModal" class="modal hide">
+  <div class="modalcard">
+    <div class="modalhead">
+      <h2>🔒 Área do professor</h2>
+      <button class="xbtn" onclick="closeProf()">✕</button>
+    </div>
+
+    <!-- gate -->
+    <div id="profGate" class="pgate">
+      <p style="font-size:13.5px;color:var(--muted)">Digite o PIN para ver o cadastro da turma.</p>
+      <input id="pinInput" type="password" inputmode="numeric" maxlength="8" placeholder="••••" onkeydown="if(event.key==='Enter')checkPin()">
+      <div><button class="btn btn-primary btn-sm" onclick="checkPin()">Entrar</button></div>
+      <p id="pinErr" style="font-size:12.5px;color:var(--bad);margin-top:8px;display:none">PIN incorreto.</p>
+    </div>
+
+    <!-- panel -->
+    <div id="profPanel" class="hide">
+      <div class="fsbox">
+        <h3>📨 Envio dos resultados (Formspree)</h3>
+        <p>Cole aqui o seu link do Formspree (ex.: <code>https://formspree.io/f/xxxxxxx</code>). Cada aluno que finalizar terá o nome e a nota enviados para o seu painel/e-mail do Formspree. Dica: para deixar fixo, você também pode editar a linha <code>FORMSPREE_ENDPOINT</code> no início do arquivo.</p>
+        <div class="fsinput">
+          <input id="fsUrl" type="url" placeholder="https://formspree.io/f/seu_id">
+          <button class="btn btn-primary btn-sm" onclick="saveFormspree()">Salvar</button>
+          <button class="btn btn-ghost btn-sm" onclick="testSend()">Testar envio</button>
+        </div>
+        <p id="fsStatus" style="margin-top:8px;font-weight:600"></p>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:20px">
+        <div class="seclabel" style="margin:0">Cadastro da turma — <span id="rosterCount">0</span> registro(s) nesta sessão</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap" class="no-print">
+          <button class="btn btn-gold btn-sm" onclick="downloadCSV()">⬇ Baixar CSV</button>
+          <button class="btn btn-ghost btn-sm" onclick="window.print()">🖨 Imprimir</button>
+          <button class="btn btn-ghost btn-sm" onclick="clearRoster()">🗑 Limpar</button>
+        </div>
+      </div>
+      <div class="tablewrap">
+        <table class="rtable">
+          <thead><tr><th>#</th><th>Nome</th><th>Matríc.</th><th>Turma</th><th>Nota</th><th>%</th><th>Modo</th><th>Data/hora</th></tr></thead>
+          <tbody id="rosterBody"></tbody>
+        </table>
+      </div>
+      <div id="rosterEmpty" class="empty">Nenhum aluno finalizou o quiz nesta sessão ainda.</div>
+      <p style="font-size:12px;color:var(--muted);margin-top:14px;line-height:1.5">
+        ⚠️ A lista acima fica apenas nesta sessão do navegador (não é salva ao fechar a página). Para guardar, use <b>Baixar CSV</b> ou configure o <b>Formspree</b>, que mantém o registro permanente. Na primeira vez que um resultado for enviado, o Formspree envia um e-mail para você <b>confirmar o formulário</b> — depois disso, os envios passam a aparecer no painel.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- alvo invisível do envio ao Formspree (evita recarregar a página) -->
+<iframe name="fsFrame" style="display:none" title="envio"></iframe>
+
+<script>
+/* ============================================================
+   CONFIGURAÇÃO — Formspree e PIN
+   Para deixar o envio fixo, cole seu link entre as aspas abaixo:
+   ============================================================ */
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xbdvalgj";   // link da professora — já configurado
+const PROF_PIN = "2026";                  // PIN da área do professor (troque se quiser)
+
+/* ============ BANCO DE QUESTÕES ============ */
+const TEMAS = {
+  ia_conc:{nome:"Intro · Conceitos fundamentais", cor:"#0A3A35", aula:"Intro"},
+  ia_soc:{nome:"Intro · Doença tropical & Saúde", cor:"#9C3D2E", aula:"Intro"},
+  ia_pat:{nome:"Intro · Patogenia", cor:"#8F6414", aula:"Intro"},
+  ia_imu:{nome:"Intro · Imunologia", cor:"#2F7D57", aula:"Intro"},
+  ia_proto:{nome:"Intro · Protozoários (geral)", cor:"#4B6584", aula:"Intro"},
+  p1c:{nome:"I · Conceitos e mucosa", cor:"#3E7C68", aula:"I"},
+  p1a:{nome:"I · Rizópodes (amebíase)", cor:"#D64C2F", aula:"I"},
+  p1f:{nome:"I · Flagelados (Giardia, Trichomonas)", cor:"#B9831A", aula:"I"},
+  p2l:{nome:"II · Leishmania", cor:"#0E4C46", aula:"II"},
+  p2c:{nome:"II · T. cruzi (Chagas)", cor:"#6A4C93", aula:"II"},
+  p2i:{nome:"II · Imunologia", cor:"#2F6E8F", aula:"II"},
+  p3g:{nome:"III · Apicomplexa (geral)", cor:"#5B4B8A", aula:"III"},
+  p3p:{nome:"III · Plasmodium (malária)", cor:"#B23A20", aula:"III"},
+  p3t:{nome:"III · Toxoplasma (toxoplasmose)", cor:"#1F7A6B", aula:"III"},
+  p3cr:{nome:"III · Cryptosporidium", cor:"#7A5C3E", aula:"III"},
+  h1g:{nome:"H-I · Nematódeos (geral e ciclo)", cor:"#0E4C46", aula:"H-I"},
+  h1a:{nome:"H-I · Ascaris e Trichuris", cor:"#B23A20", aula:"H-I"},
+  h1n:{nome:"H-I · Ancilostomídeos (amarelão)", cor:"#B9831A", aula:"H-I"},
+  h1s:{nome:"H-I · Strongyloides e Enterobius", cor:"#3E7C68", aula:"H-I"},
+  h1i:{nome:"H-I · Imunologia (Th2, eosinófilos)", cor:"#2F6E8F", aula:"H-I"},
+  h2f:{nome:"H-II · Filárias (Wuchereria, Onchocerca)", cor:"#6A4C93", aula:"H-II"},
+  h2t:{nome:"H-II · Teciduais e larva migrans", cor:"#D64C2F", aula:"H-II"},
+  h2i:{nome:"H-II · Imunologia", cor:"#2F6E8F", aula:"H-II"},
+  h3c:{nome:"H-III · Cestódeos e teníase", cor:"#0E4C46", aula:"H-III"},
+  h3n:{nome:"H-III · Cisticercose e neurocisticercose", cor:"#B23A20", aula:"H-III"},
+  h3h:{nome:"H-III · Hymenolepis e Echinococcus", cor:"#B9831A", aula:"H-III"},
+  h3s:{nome:"H-III · Schistosoma (esquistossomose)", cor:"#1F7A6B", aula:"H-III"},
+  h3f:{nome:"H-III · Fasciola e trematódeos", cor:"#5B4B8A", aula:"H-III"},
+  h3i:{nome:"H-III · Imunologia (cestódeos)", cor:"#8F6414", aula:"H-III"}
+};
+const QUESTIONS = [
+  /* ======= Introdução à Parasitologia com Imunologia (Aula 1) ======= */
+  {t:"ia_conc", q:"Sobre os tipos de hospedeiro, é correto afirmar que o hospedeiro definitivo é aquele em que:",
+   o:["o parasito permanece por mais tempo","ocorre a reprodução sexuada (ou se encontra a forma adulta)","a doença é sempre mais grave","o parasito foi descrito pela primeira vez"], c:1,
+   e:"O hospedeiro definitivo define-se pela reprodução sexuada, não pelo tempo nem pela gravidade. Na malária, o hospedeiro definitivo é o mosquito Anopheles; o ser humano, onde há multiplicação assexuada e doença, é o intermediário."},
+  {t:"ia_conc", q:"Um vetor é classificado como biológico quando:",
+   o:["apenas transporta o parasito no corpo ou nas patas","o parasito se desenvolve e/ou se multiplica em seu interior","não participa do ciclo do parasito","é sempre um molusco de água doce"], c:1,
+   e:"No vetor biológico (ex.: o flebotomíneo da leishmaniose) o parasito cumpre parte obrigatória do ciclo — por isso é insubstituível, e combatê-lo interrompe a transmissão. O vetor mecânico (ex.: a mosca) apenas transporta."},
+  {t:"ia_conc", q:"A diferença prática entre ciclo monoxeno e heteroxeno está sobretudo em:",
+   o:["quantos ovos o parasito produz","o número de hospedeiros necessários — e, com isso, a estratégia de profilaxia","o tamanho do parasito adulto","a cor da forma infectante"], c:1,
+   e:"O monoxeno completa-se num único hospedeiro (ex.: Ascaris) — profilaxia pelo saneamento; o heteroxeno exige dois ou mais (ex.: leishmaniose) — profilaxia no elo mais vulnerável (vetor, reservatório)."},
+  {t:"ia_conc", q:"O conceito de reservatório refere-se a:",
+   o:["o indivíduo doente que procura o serviço de saúde","a fonte que mantém o parasito na natureza, garantindo novas infecções","o mesmo que hospedeiro intermediário","o local do corpo onde o parasito se instala"], c:1,
+   e:"Reservatório é um conceito de manutenção: a fonte (frequentemente um animal, como o cão na leishmaniose) que sustenta o parasito no ambiente. Por isso não se controla uma zoonose tratando só os doentes humanos."},
+  {t:"ia_conc", q:"Na maioria das protozooses intestinais, a regra de transmissão é:",
+   o:["transmite-se o trofozoíto e adoece-se pelo cisto","transmite-se o cisto e adoece-se pelo trofozoíto","ambas as formas transmitem igualmente","não há forma de resistência envolvida"], c:1,
+   e:"O cisto é a forma de resistência que sobrevive no ambiente e é ingerida (transmite); o trofozoíto é a forma ativa que coloniza e causa dano (adoece). Exceção notável: o Trichomonas, que não forma cisto."},
+  {t:"ia_conc", q:"Sobre a nomenclatura científica, assinale a forma CORRETA:",
+   o:["trypanosoma cruzi","Trypanosoma Cruzi","Trypanosoma cruzi","TRYPANOSOMA CRUZI"], c:2,
+   e:"No binômio, o gênero leva inicial maiúscula e o epíteto específico minúscula, ambos em itálico (ou sublinhado, se manuscrito): Trypanosoma cruzi. O erro de caixa no epíteto é o mais comum."},
+
+  {t:"ia_soc", q:"Segundo a leitura crítica do conceito, o que torna uma doença \"tropical\" é, principalmente:",
+   o:["o calor e a umidade dos trópicos","a determinação social (pobreza, ausência de saneamento) mais do que o clima","a presença exclusiva de vírus","uma característica genética das populações"], c:1,
+   e:"O clima favorece, mas não determina: doenças \"tropicais\" existiram em regiões temperadas e recuaram com saneamento, moradia e renda, sem que o clima mudasse. A tropicalidade é, em grande parte, socialmente construída."},
+  {t:"ia_soc", q:"Chamar uma doença de \"negligenciada\" significa, principalmente, que ela:",
+   o:["é rara e de pouca importância","recebe pouco investimento e prioridade por atingir populações pobres e sem voz","é causada apenas por protozoários","não possui tratamento conhecido"], c:1,
+   e:"\"Negligenciada\" é um diagnóstico sobre uma escolha coletiva — a negligência científica, política e social. Não se refere à raridade: são doenças comuns e de alta carga, concentradas na pobreza."},
+  {t:"ia_soc", q:"No modelo em camadas dos determinantes sociais da saúde (Dahlgren e Whitehead), a leitura correta é que:",
+   o:["a camada individual determina todas as demais","as camadas externas (renda, saneamento, política) condicionam as internas","apenas a genética importa","os determinantes sociais não afetam parasitoses"], c:1,
+   e:"Lê-se de fora para dentro: exigir \"estilo de vida saudável\" de quem não tem água tratada nem saneamento é ler o diagrama ao contrário. As condições de vida determinam o que é possível na escolha individual."},
+  {t:"ia_soc", q:"O ciclo vicioso pobreza–doença é descrito como bidirecional porque:",
+   o:["a pobreza causa a doença, e o assunto se encerra aí","a doença causa a pobreza, e o assunto se encerra aí","a pobreza expõe à doença e a doença, por sua vez, aprofunda a pobreza","não há relação entre os dois"], c:2,
+   e:"A pobreza expõe (falta de saneamento, desnutrição) e a doença rouba escola, trabalho e futuro, aprofundando a pobreza que a originou. Romper qualquer elo — inclusive pela educação — é fazer Saúde Pública."},
+  {t:"ia_soc", q:"O Maranhão concentra grande carga de doenças negligenciadas em parte porque:",
+   o:["tem o clima mais quente do país","pertence, ao mesmo tempo, ao Nordeste e à Amazônia Legal, com alta pobreza","não tem serviços de saúde","é o menor estado do país"], c:1,
+   e:"A dupla pertença (Nordeste + Amazônia Legal), somada à pobreza e ao baixo saneamento, coloca o estado na interseção de dois Brasis de alta carga parasitária — e o torna epicentro nacional da leishmaniose visceral."},
+
+  {t:"ia_pat", q:"A ação espoliadora dos ancilostomídeos causa, sobretudo:",
+   o:["obstrução intestinal aguda","anemia ferropriva por perda crônica de sangue","abscesso hepático","meningite"], c:1,
+   e:"Os ancilostomídeos consomem sangue continuamente; a perda crônica de ferro leva à anemia ferropriva, com impacto no desenvolvimento e no aprendizado — um mecanismo biológico com desdobramento social direto."},
+  {t:"ia_pat", q:"O novelo de Ascaris obstruindo o intestino é exemplo de ação:",
+   o:["tóxica","mecânica (obstrutiva)","imunopatológica","espoliadora"], c:1,
+   e:"A ação mecânica é o dano por massa/ocupação: muitos vermes formam um novelo que obstrui a luz intestinal; cisticercos ocupam espaço no cérebro. Quanto maior a carga, maior o dano."},
+  {t:"ia_pat", q:"A imunopatologia (a \"defesa que adoece\") é bem ilustrada:",
+   o:["pelo granuloma da esquistossomose, cuja fibrose lesa o fígado","pela simples presença do verme no intestino","pela ação direta de uma toxina","pela reprodução do parasito no sangue"], c:0,
+   e:"O granuloma isola o ovo (protetor), mas sua repetição deposita fibrose (Symmers) e causa hipertensão portal. Quem lesa o órgão é a resposta imune, não o verme — o \"fogo amigo\" do sistema de defesa."},
+  {t:"ia_pat", q:"A gravidade de uma parasitose depende, essencialmente, de:",
+   o:["apenas do número de parasitos","apenas do estado do hospedeiro","da combinação carga parasitária × estado do hospedeiro × resposta imune","da cor das fezes"], c:2,
+   e:"A mesma infecção adoece pessoas de formas diferentes: gravidade = carga × estado do corpo (nutrição, idade, imunidade) × qualidade da resposta. E o \"estado do corpo\" depende, no fundo, de condições sociais."},
+  {t:"ia_pat", q:"O portador assintomático é epidemiologicamente importante porque:",
+   o:["nunca transmite o parasito","está infectado sem sintomas, mas pode transmitir e sustentar a cadeia","é sempre imune","já foi tratado"], c:1,
+   e:"Entre \"ter o parasito\" e \"estar doente\" há um espectro. O portador assintomático elimina formas infectantes silenciosamente — por isso a busca ativa procura também os infectados sem sintomas."},
+
+  {t:"ia_imu", q:"Qual característica é EXCLUSIVA da imunidade adaptativa?",
+   o:["resposta imediata, em minutos","reconhecimento inespecífico de padrões","especificidade e memória imunológica","atuação por barreiras e fagócitos"], c:2,
+   e:"A adaptativa é específica e guarda memória (a base da vacina); a inata é imediata e inespecífica. As duas cooperam — e a inata inclusive instrui, cedo, o perfil (Th1/Th2) que a adaptativa vai assumir."},
+  {t:"ia_imu", q:"No reconhecimento do parasito pela imunidade inata, o PAMP é:",
+   o:["o receptor da célula de defesa","o padrão molecular do patógeno que denuncia sua presença","um tipo de anticorpo","uma citocina reguladora"], c:1,
+   e:"O PAMP é a \"cara de suspeito\" — um padrão molecular conservado do parasito. O receptor que o lê é o PRR (ex.: os TLR). Esse encontro inicial orienta quais citocinas serão liberadas e, com elas, o perfil da resposta."},
+  {t:"ia_imu", q:"Entre as funções do sistema complemento NÃO se inclui:",
+   o:["opsonização (marcar o parasito para a fagocitose)","inflamação (recrutar células)","lise da membrana do alvo","produção de memória imunológica específica"], c:3,
+   e:"O complemento opsoniza, inflama e lisa (complexo de ataque à membrana) — mas é da imunidade inata e não gera memória específica. Memória é atributo da imunidade adaptativa (linfócitos)."},
+  {t:"ia_imu", q:"A molécula que \"apresenta\" fragmentos do parasito aos linfócitos T é:",
+   o:["a IgA","o MHC","o complemento","a histamina"], c:1,
+   e:"O MHC é o \"cartaz\" que a célula usa para exibir pedaços do que produz por dentro (classe I, ao CD8) ou capturou por fora (classe II, ao CD4). A localização do parasito decide qual resposta é chamada."},
+  {t:"ia_imu", q:"Sobre os linfócitos T, é correto dizer que:",
+   o:["o CD4 é o atirador que mata células infectadas","o CD8 apenas produz anticorpos","o CD4 coordena a resposta (o \"general\") e o CD8 destrói células infectadas (o \"atirador\")","ambos produzem cistos"], c:2,
+   e:"O CD4 comanda enviando citocinas e escolhe a tática (Th1/Th2); o CD8 executa, matando as células tomadas pelo parasito. Contra intracelulares, a qualidade do comando protege mais que a quantidade de anticorpos."},
+  {t:"ia_imu", q:"Contra parasitos intracelulares (ex.: Leishmania no macrófago), a resposta protetora é principalmente:",
+   o:["Th2, com IgE e eosinófilos","Th1, com IFN-gama ativando o macrófago","produção maciça de anticorpos","resposta reguladora (Treg)"], c:1,
+   e:"O parasito escondido dentro da célula só é morto quando o macrófago é ATIVADO pelo IFN-gama (perfil Th1). Anticorpos e Th2 não alcançam o parasito intracelular."},
+  {t:"ia_imu", q:"A resposta do tipo Th2, típica contra helmintos, caracteriza-se por:",
+   o:["ativação do macrófago por IFN-gama","muco, eosinófilos e anticorpo IgE (lógica de expulsão)","produção de óxido nítrico intracelular","ausência de citocinas"], c:1,
+   e:"Contra o verme grande demais para ser fagocitado, o corpo tenta expulsá-lo: muco, motilidade, eosinófilos e IgE. Por isso a eosinofilia no hemograma é pista de helmintíase."},
+  {t:"ia_imu", q:"A citocina considerada a \"assinatura\" do perfil Th1 é:",
+   o:["a IL-4","o IFN-gama","a IL-10","a IL-5"], c:1,
+   e:"O IFN-gama é a citocina-ordem do Th1: ativa o macrófago a destruir o parasito que abriga. IL-4/5/13 organizam o Th2; a IL-10 é reguladora (freia a resposta)."},
+  {t:"ia_imu", q:"O principal anticorpo da defesa das mucosas (intestinal, respiratória, urogenital) é:",
+   o:["a IgG","a IgM","a IgA secretora","a IgE"], c:2,
+   e:"A IgA reveste a superfície da mucosa e impede a adesão do parasito — a \"alfândega\" do corpo. É a defesa central contra os protozoários intestinais (Entamoeba, Giardia)."},
+  {t:"ia_imu", q:"Na leishmaniose visceral ativa há muitos anticorpos e, ainda assim, doença grave. Por quê?",
+   o:["os anticorpos causam a doença","a resposta protetora (Th1, celular) está deprimida, e o anticorpo não alcança o parasito intracelular","o parasito é extracelular","falta produção de IgE"], c:1,
+   e:"É o exemplo-mãe de que \"muito anticorpo\" não é proteção: contra intracelulares protege a resposta celular (Th1), que na LV está suprimida (IL-10 alta). Sem a Th1, o parasito se espalha por baço, fígado e medula."},
+  {t:"ia_imu", q:"São estratégias de EVASÃO imune usadas por parasitos, EXCETO:",
+   o:["variação antigênica (trocar as moléculas de superfície)","vida intracelular (esconder-se dentro da célula)","imunomodulação (induzir resposta reguladora)","produção de memória imunológica pelo hospedeiro"], c:3,
+   e:"Variação antigênica, vida intracelular e imunomodulação são táticas do parasito para escapar da defesa. A memória imunológica é uma resposta do hospedeiro — não uma evasão do parasito."},
+  {t:"ia_imu", q:"Uma eosinofilia acentuada no hemograma sugere investigar, sobretudo:",
+   o:["infecção por protozoário intracelular","helmintíase (resposta tipo Th2)","infecção bacteriana","deficiência de IgG"], c:1,
+   e:"Os helmintos disparam resposta Th2, que expande os eosinófilos e produz IgE. A eosinofilia é pista de verminose, embora não indique a espécie."},
+
+  {t:"ia_proto", q:"A principal diferença entre um protozoário e uma bactéria é que o protozoário:",
+   o:["é procarionte, sem núcleo","é eucarionte, com núcleo verdadeiro e organelas","é sempre maior que um verme","não causa doença"], c:1,
+   e:"Protozoário é eucarionte (núcleo e organelas); bactéria é procarionte. A proximidade bioquímica com nossas células torna o tratamento das protozooses, muitas vezes, mais delicado."},
+  {t:"ia_proto", q:"O grupo de protozoários que mais importa para o Maranhão, por abrigar a Leishmania, é o dos:",
+   o:["rizópodes","flagelados intestinais","hemoflagelados","apicomplexa"], c:2,
+   e:"Os hemoflagelados (flagelados do sangue e dos tecidos) incluem Leishmania e Trypanosoma cruzi. A leishmaniose visceral, protagonista da disciplina, pertence a este grupo."},
+  {t:"ia_proto", q:"A febre em ondas, com periodicidade quase marcada, na malária, deve-se à:",
+   o:["produção de anticorpos","esquizogonia sincronizada, com ruptura simultânea das hemácias","migração larval pelo pulmão","formação de cistos"], c:1,
+   e:"Nos Apicomplexa, a divisão múltipla (esquizogonia) dentro da hemácia culmina em rupturas sincronizadas que liberam parasitos e substâncias pirogênicas de uma vez — daí os acessos febris periódicos."},
+
+  /* ---- Protozoários I — conceitos e mucosa ---- */
+  {t:"p1c", q:"A diferença fundamental entre um protozoário e uma bactéria é que o protozoário é:",
+   o:["procarionte, sem núcleo verdadeiro","eucarionte, com núcleo verdadeiro e organelas","um vírus de grande tamanho","sempre pluricelular"], c:1,
+   e:"O protozoário é eucarionte (núcleo e organelas); a bactéria é procarionte. Essa proximidade bioquímica com nossas células torna o tratamento das protozooses mais delicado."},
+  {t:"p1c", q:"Na maioria das protozooses intestinais, vale a regra:",
+   o:["transmite-se o trofozoíto e adoece-se pelo cisto","transmite-se o cisto e adoece-se pelo trofozoíto","só existe a forma de trofozoíto","nenhuma forma resiste no ambiente"], c:1,
+   e:"O cisto é a forma de resistência (transmite, via fecal-oral); o trofozoíto é a forma ativa que coloniza e adoece. Exceção: o Trichomonas vaginalis não forma cisto."},
+  {t:"p1c", q:"O principal anticorpo de defesa das mucosas, que impede a adesão dos protozoários intestinais, é:",
+   o:["a IgG","a IgE","a IgA secretora","a IgM"], c:2,
+   e:"A IgA secretora reveste a superfície da mucosa e impede a adesão — a 'alfândega' do corpo. Sua deficiência agrava a giardíase e outras protozooses de mucosa."},
+  {t:"p1c", q:"Os quatro grandes grupos de protozoários de importância médica organizam-se, sobretudo, por:",
+   o:["cor da forma infectante","forma de locomoção (pseudópodes, flagelos, etc.) e habitat","tamanho do núcleo","tipo de hospedeiro definitivo"], c:1,
+   e:"Rizópodes (pseudópodes), flagelados (flagelos), hemoflagelados (flagelo no sangue/tecidos) e Apicomplexa (sem locomoção evidente). A locomoção e o habitat organizam o estudo."},
+  {t:"p1c", q:"O Trichomonas vaginalis é exceção entre os protozoários de mucosa porque:",
+   o:["forma cistos muito resistentes","não forma cisto — por isso se transmite por contato direto (sexual)","vive dentro da hemácia","é transmitido por mosquito"], c:1,
+   e:"Sem cisto, o Trichomonas não resiste no ambiente e não segue a via fecal-oral: depende do contato direto de mucosa a mucosa — é uma IST."},
+
+  /* ---- Protozoários I — rizópodes / amebíase ---- */
+  {t:"p1a", q:"Entre as amebas intestinais do ser humano, a única comprovadamente invasora (patogênica) é:",
+   o:["Entamoeba coli","Endolimax nana","Entamoeba histolytica","Iodamoeba butschlii"], c:2,
+   e:"A E. histolytica é a única ameba intestinal capaz de invadir a mucosa, ulcerar e atingir outros órgãos. As demais (coli, nana, butschlii) são comensais."},
+  {t:"p1a", q:"A clássica úlcera 'em botão de camisa' da amebíase caracteriza-se por ser:",
+   o:["larga na mucosa e estreita na submucosa","estreita na mucosa e larga na submucosa (invasão da submucosa frouxa)","superficial, sem invasão","exclusiva do fígado"], c:1,
+   e:"Após aderir e lisar o epitélio, o trofozoíto invade a submucosa frouxa e se espalha lateralmente — daí a lesão estreita na entrada (mucosa) e larga no fundo (submucosa)."},
+  {t:"p1a", q:"A principal complicação extraintestinal da amebíase é:",
+   o:["o megacólon","o abscesso hepático amebiano","a anemia ferropriva","a cegueira"], c:1,
+   e:"Os trofozoítos podem alcançar o fígado pela circulação porta e formar o abscesso hepático amebiano — a forma extraintestinal mais importante da amebíase."},
+  {t:"p1a", q:"Encontrar trofozoítos com hemácias fagocitadas (eritrófagos) no exame sugere:",
+   o:["ameba comensal, sem doença","E. histolytica invasora (hematófaga)","Giardia","Trichomonas"], c:1,
+   e:"O trofozoíto hematófago (com eritrófagos no interior) é forte indício de E. histolytica invasora, ajudando a distingui-la das amebas comensais."},
+  {t:"p1a", q:"Por que um laudo de EPF não deve afirmar 'Entamoeba histolytica' apenas pela microscopia?",
+   o:["porque a microscopia é proibida","porque a E. dispar (comensal) é morfologicamente idêntica — exige antígeno ou PCR","porque a histolytica não tem cistos","porque só se vê ao raio-X"], c:1,
+   e:"A E. dispar, comensal, é indistinguível da histolytica ao microscópio. O correto é relatar 'complexo Entamoeba histolytica/dispar', reservando a diferenciação a antígeno ou PCR."},
+  {t:"p1a", q:"Reconhecer amebas comensais (E. coli, Endolimax nana) é clinicamente importante porque:",
+   o:["elas causam amebíase grave","evita confundi-las com a patogênica e tratar (ou assustar) sem necessidade","elas transmitem malária","elas exigem cirurgia"], c:1,
+   e:"As comensais não adoecem, mas indicam contato fecal-oral. Saber diferenciá-las evita tratamento e alarme desnecessários — e evita ignorar a verdadeira patogênica."},
+
+  /* ---- Protozoários I — flagelados ---- */
+  {t:"p1f", q:"A giardíase causa diarreia porque a Giardia:",
+   o:["invade a parede e ulcera, com sangue","recobre a mucosa do delgado e atrapalha a absorção, sem invadir","perfura o fígado","destrói hemácias"], c:1,
+   e:"A Giardia não invade: adere pelo disco ventral e recobre a superfície absortiva, causando má absorção — diarreia alta, gordurosa (esteatorreia) e sem sangue."},
+  {t:"p1f", q:"Um EPF negativo não afasta giardíase porque:",
+   o:["a Giardia não sai nas fezes","a eliminação de cistos é intermitente — exige EPF seriado ou pesquisa de antígeno","o exame é sempre falso","só se diagnostica por biópsia cerebral"], c:1,
+   e:"Os cistos são liberados de forma intermitente; por isso repete-se o exame (EPF seriado, três amostras) ou pesquisa-se antígeno nas fezes."},
+  {t:"p1f", q:"Pessoas com deficiência de IgA tendem a ter giardíase mais grave e recorrente porque:",
+   o:["a IgA é o que impede a adesão da Giardia à mucosa","a IgA transmite o parasito","a IgA causa a diarreia","a IgA só atua no sangue"], c:0,
+   e:"A defesa central da mucosa contra a Giardia é a IgA secretora, que bloqueia a adesão. Sem ela, a colonização é mais intensa e persistente."},
+  {t:"p1f", q:"A tricomoníase é considerada uma IST porque o Trichomonas:",
+   o:["forma cistos resistentes na água","não forma cisto e depende do contato direto de mucosas","é transmitido pelo mosquito","vive no solo"], c:1,
+   e:"Sem forma de resistência (cisto), o Trichomonas não sobrevive no ambiente: precisa do contato sexual direto. Por isso trata-se sempre o casal."},
+  {t:"p1f", q:"O diagnóstico clássico da tricomoníase baseia-se em:",
+   o:["cisto nas fezes","trofozoíto móvel em exame a fresco da secreção","hemocultura","raio-X de tórax"], c:1,
+   e:"Vê-se o trofozoíto flagelado, móvel, no exame a fresco da secreção. Não há cisto a procurar — a mobilidade é a pista."},
+  {t:"p1f", q:"A diferença-chave entre a diarreia da amebíase e a da giardíase é que:",
+   o:["ambas têm sangue sempre","a amebíase invade e pode ter sangue; a giardíase não invade e é sem sangue","a giardíase é mais grave e com sangue","nenhuma causa diarreia"], c:1,
+   e:"Amebíase = invasão da mucosa → disenteria com muco e sangue; giardíase = dano de superfície → diarreia alta, gordurosa e sem sangue. Invasão × superfície."},
+
+  /* ---- Protozoários II — Leishmania ---- */
+  {t:"p2l", q:"No ciclo da Leishmania, a promastigota e a amastigota correspondem, respectivamente, a:",
+   o:["a que adoece / a que vive no vetor","a que vive no flebotomíneo (flagelada) / a que vive no macrófago (sem flagelo livre)","duas espécies diferentes","formas de resistência ambiental"], c:1,
+   e:"Promastigota: flagelada, livre, no flebotomíneo (inoculada na picada). Amastigota: sem flagelo livre, dentro do macrófago — a forma que se multiplica e adoece."},
+  {t:"p2l", q:"O vetor da leishmaniose visceral no Brasil é:",
+   o:["o mosquito Aedes aegypti","o flebotomíneo Lutzomyia longipalpis (mosquito-palha)","o barbeiro","o carrapato"], c:1,
+   e:"A LV é transmitida pela picada da fêmea do flebotomíneo Lutzomyia longipalpis (mosquito-palha), um vetor biológico de hábitos crepusculares e noturnos."},
+  {t:"p2l", q:"No ambiente urbano, o principal reservatório da leishmaniose visceral é:",
+   o:["o rato","o cão doméstico","o boi","o mosquito"], c:1,
+   e:"O cão é o principal reservatório urbano da LV; por isso o controle é 'Uma Só Saúde' — age no doente, no vetor, no cão e no ambiente ao mesmo tempo."},
+  {t:"p2l", q:"A tríade clínica clássica da leishmaniose visceral (calazar) é:",
+   o:["febre + tosse + coriza","febre prolongada + hepatoesplenomegalia + pancitopenia","diarreia + vômito + desidratação","icterícia + colúria + acolia"], c:1,
+   e:"A LV tem tropismo pelo sistema fagocítico mononuclear (baço, fígado, medula): febre arrastada, hepatoesplenomegalia e pancitopenia, com emagrecimento progressivo."},
+  {t:"p2l", q:"Em relação à leishmaniose visceral no Brasil, o Maranhão:",
+   o:["não registra casos","é o epicentro nacional da doença","só tem a forma cutânea","erradicou a doença"], c:1,
+   e:"O Maranhão lidera o país em casos de LV, com São Luís como epicentro urbano — encontro de biologia, pobreza e ambiente no mesmo território."},
+  {t:"p2l", q:"Na leishmaniose visceral ativa, o teste de Montenegro (IDRM) costuma ser:",
+   o:["fortemente positivo","negativo, por depressão da resposta celular (anergia)","impossível de realizar","substituído pela glicemia"], c:1,
+   e:"O Montenegro mede a resposta celular (Th1). Na LV ativa há anergia (resposta celular deprimida), então ele é negativo — e positiva-se após a cura."},
+  {t:"p2l", q:"A forma cutânea localizada da leishmaniose (úlcera que tende a curar) associa-se a:",
+   o:["resposta Th1 eficiente","ausência total de imunidade","resposta Th2 exclusiva","infecção bacteriana"], c:0,
+   e:"A forma localizada reflete boa resposta celular (Th1), que contém o parasito e leva à cura. Nos polos, a difusa (anérgica/Th2) e a mucosa (Th1 excessiva) mostram o desequilíbrio."},
+  {t:"p2l", q:"A combinação clássica que sugere leishmaniose visceral ativa é:",
+   o:["sorologia negativa + Montenegro positivo","sorologia positiva + Montenegro negativo + quadro grave","apenas febre","eosinofilia isolada"], c:1,
+   e:"Sorologia positiva (muitos anticorpos) + Montenegro negativo (anergia celular) + quadro grave é a assinatura da LV ativa, confirmada pela pesquisa do parasito."},
+
+  /* ---- Protozoários II — T. cruzi / Chagas ---- */
+  {t:"p2c", q:"A forma clássica de transmissão da doença de Chagas pelo barbeiro é:",
+   o:["pela picada (inoculação), como na dengue","contaminativa: pelas fezes do inseto esfregadas na lesão ou mucosa","pela água contaminada","pela via respiratória"], c:1,
+   e:"O barbeiro defeca ao picar; o T. cruzi está nas fezes e entra quando a pessoa as esfrega na lesão da picada ou numa mucosa. A picada abre a porta; as fezes trazem o parasito."},
+  {t:"p2c", q:"O vetor da doença de Chagas é:",
+   o:["o flebotomíneo","o triatomíneo (barbeiro)","o Anopheles","a mosca doméstica"], c:1,
+   e:"O barbeiro (triatomíneo) vive em frestas de casas de pau a pique e anexos; é noturno e defeca ao se alimentar — daí a transmissão contaminativa."},
+  {t:"p2c", q:"O sinal de Romaña (edema bipalpebral unilateral, indolor) indica:",
+   o:["fase crônica cardíaca","porta de entrada ocular na fase aguda da Chagas","alergia ao inseto","desidratação"], c:1,
+   e:"O sinal de Romaña marca a entrada do parasito pela conjuntiva na fase aguda. Quando a entrada é cutânea, forma-se o chagoma de inoculação."},
+  {t:"p2c", q:"A forma do Trypanosoma cruzi encontrada circulando no sangue (e infectante) é a:",
+   o:["amastigota","tripomastigota","epimastigota","cisto"], c:1,
+   e:"A tripomastigota é a forma sanguínea e infectante (abundante na fase aguda). A amastigota multiplica-se dentro das células (tecidos); a epimastigota, no intestino do barbeiro."},
+  {t:"p2c", q:"As formas graves da fase crônica da doença de Chagas são, sobretudo:",
+   o:["cegueira e surdez","cardiopatia chagásica e as formas digestivas (megaesôfago, megacólon)","anemia e icterícia","artrite e febre alta"], c:1,
+   e:"Décadas depois, a inflamação crônica lesa o coração (arritmias, insuficiência, morte súbita) e os plexos nervosos do tubo digestivo (megaesôfago, megacólon)."},
+  {t:"p2c", q:"O diagnóstico da doença de Chagas crônica exige:",
+   o:["um único exame de sangue a fresco","dois testes sorológicos de princípios diferentes, concordantes","cultura de fezes","apenas o relato do paciente"], c:1,
+   e:"Na fase crônica a parasitemia é baixa (não se acha o parasito): procuram-se anticorpos, e exige-se a concordância de duas técnicas sorológicas diferentes."},
+  {t:"p2c", q:"Uma via de transmissão da Chagas que ganhou destaque, sobretudo na Amazônia, é a:",
+   o:["sexual","oral (alimentos como açaí e caldo de cana contaminados)","respiratória","pelo toque"], c:1,
+   e:"A via oral, por ingestão de alimentos contaminados com o barbeiro ou suas fezes (açaí, caldo de cana), causa surtos — muitas vezes mais graves e coletivos."},
+  {t:"p2c", q:"O tratamento específico da doença de Chagas (benznidazol) é mais eficaz:",
+   o:["na fase crônica avançada","na fase aguda e em crianças/jovens","nunca funciona","apenas após transplante"], c:1,
+   e:"O benznidazol tem maior eficácia na fase aguda e em pessoas jovens; na fase crônica avançada o benefício antiparasitário é menor, e o foco passa a ser também as complicações."},
+
+  /* ---- Protozoários II — imunologia ---- */
+  {t:"p2i", q:"Contra os hemoflagelados (Leishmania, T. cruzi), que são intracelulares, a defesa protetora é principalmente:",
+   o:["o anticorpo circulante","a resposta celular (Th1), que ativa a célula infectada","o sistema complemento sozinho","a IgE"], c:1,
+   e:"O anticorpo não alcança o parasito dentro da célula; quem resolve é a resposta celular — o linfócito T (Th1) que ativa o macrófago a destruir o parasito."},
+  {t:"p2i", q:"Na leishmaniose, de modo geral, os perfis que PROTEGE e que PERMITE a doença são, respectivamente:",
+   o:["Th2 protege / Th1 permite","Th1 protege (IFN-gama ativa o macrófago) / Th2 permite (IL-4, IL-10 o desligam)","ambos protegem igualmente","nenhum influencia o desfecho"], c:1,
+   e:"Th1 (IFN-gama) ativa o macrófago e cura; Th2/regulador (IL-4, IL-10) o desliga e o parasito prospera. A mesma Leishmania, dois desfechos, conforme o perfil imune."},
+  {t:"p2i", q:"Na ativação do macrófago, o programa M1 (que mata o parasito) usa a enzima iNOS para produzir:",
+   o:["poliaminas que nutrem o parasito","óxido nítrico (NO), tóxico ao parasito","anticorpos","histamina"], c:1,
+   e:"O M1 (via Th1/IFN-gama) usa a iNOS para gerar óxido nítrico microbicida. O M2 (via IL-4/IL-10) usa a arginase, gerando poliaminas que acabam nutrindo o parasito."},
+  {t:"p2i", q:"Na leishmaniose visceral há muitos anticorpos e, ainda assim, a doença progride porque:",
+   o:["os anticorpos matam o paciente","o parasito é intracelular (fora do alcance do anticorpo) e a resposta celular está deprimida","não há parasito","o anticorpo virou vírus"], c:1,
+   e:"É o exemplo-mãe de que 'muito anticorpo' não é proteção: contra o intracelular protege a resposta celular (Th1), que na LV está suprimida (IL-10 alta, Montenegro negativo)."},
+  {t:"p2i", q:"Na cardiopatia chagásica crônica, o dano ao coração é, em grande parte:",
+   o:["causado pela enorme quantidade de parasitos","imunopatológico — inflamação crônica persistente com pouco parasito","uma alergia a alimentos","de origem genética apenas"], c:1,
+   e:"Na fase crônica há poucos parasitos e muita inflamação: o dano é sobretudo imunopatológico (persistência do parasito + componente autoimune). A 'defesa que fere'."},
+  {t:"p2i", q:"A Leishmania consegue sobreviver dentro do macrófago porque:",
+   o:["não entra em células","desenvolve mecanismos de evasão que 'desligam' o macrófago (ex.: induzir IL-10)","é uma bactéria","vive apenas no sangue"], c:1,
+   e:"A Leishmania sabota a defesa por dentro: resiste ao fagolisossomo, inibe o burst oxidativo e induz IL-10/TGF-beta, mantendo o macrófago 'desligado'."},
+  {t:"p2i", q:"Dizer que o perfil Th2 'não é o vilão' significa que:",
+   o:["ele nunca causa problema","ele é o perfil PROTETOR contra helmintos (vermes), embora 'permita' os intracelulares","ele é igual ao Th1","ele não existe"], c:1,
+   e:"Não há perfil bom ou mau em absoluto: contra intracelulares protege o Th1; contra helmintos, o Th2 (IL-4, IL-5, IgE, eosinófilos). A doença mora no desequilíbrio, não num perfil isolado."},
+
+  /* ============ AMPLIAÇÃO — 30 + 30 (novas questões) ============ */
+  /* + Protozoários I — conceitos e mucosa */
+  {t:"p1c", q:"Por que poucos protozoários ingeridos podem gerar uma infecção intensa, ao contrário do que ocorre com muitos helmintos?",
+   o:["porque o helminto se multiplica mais rápido","porque o protozoário é pluricelular","porque o protozoário se multiplica dentro do hospedeiro, enquanto o helminto, em geral, não","porque o protozoário não causa doença"], c:2,
+   e:"O protozoário é unicelular e se multiplica dentro do hospedeiro: poucas formas iniciais geram carga alta. O helminto, em geral, não se multiplica no hospedeiro — a carga depende de quanto se ingeriu do ambiente."},
+  {t:"p1c", q:"A via fecal-oral é o elo comum de muitas protozooses intestinais porque:",
+   o:["todos os parasitos voam","formas resistentes eliminadas nas fezes contaminam água e alimentos e retornam pela boca","o parasito é transmitido por mosquito","não há relação com o saneamento"], c:1,
+   e:"Cistos (e ovos) saem nas fezes, contaminam água e alimentos e voltam pela boca. É o elo que o saneamento básico interrompe — por isso essas doenças concentram-se onde falta água tratada e esgoto."},
+  {t:"p1c", q:"Na mucosa intestinal há dois estilos de dano. A Entamoeba histolytica e a Giardia ilustram, respectivamente:",
+   o:["as duas apenas recobrem a superfície","as duas invadem o tecido","invadir o tecido (E. histolytica) × recobrir a superfície e atrapalhar a absorção (Giardia)","nenhuma causa dano"], c:2,
+   e:"A E. histolytica invade a parede (defesa protetora sobretudo celular); a Giardia não invade — recobre a superfície e prejudica a absorção (defesa central: IgA). Um mesmo intestino, dois modos de adoecer."},
+  {t:"p1c", q:"Quando o cisto de um protozoário intestinal é ingerido, o que ocorre no tubo digestivo?",
+   o:["ele é eliminado intacto, sem efeito","ocorre o desencistamento, liberando o trofozoíto que coloniza o intestino","ele vira um verme adulto","transforma-se em bactéria"], c:1,
+   e:"Ingerido, o cisto sofre desencistamento e libera o trofozoíto, a forma ativa que coloniza e adoece. Ao longo do trânsito, novos cistos se formam e saem nas fezes, fechando o ciclo."},
+  {t:"p1c", q:"Comparado ao das bactérias, tratar uma protozoose costuma ser mais delicado porque o protozoário:",
+   o:["é um vírus","não tem membrana","é sempre resistente a tudo","é eucarionte, com bioquímica próxima da das nossas células"], c:3,
+   e:"Por ser eucarionte, o protozoário tem organização e bioquímica próximas das nossas células — o que dificulta atacá-lo sem causar toxicidade ao hospedeiro."},
+
+  /* + Protozoários I — rizópodes / amebíase */
+  {t:"p1a", q:"A invasão da mucosa intestinal pela Entamoeba histolytica envolve, em sequência:",
+   o:["apenas a presença passiva do parasito","adesão (lectina), citólise da célula (amebaporo) e destruição da matriz por proteases","produção de anticorpos pelo parasito","formação de cistos no fígado"], c:1,
+   e:"A histolytica adere à mucosa por uma lectina, mata a célula de contato (amebaporo) e degrada a matriz com proteases — daí seu poder de invadir, ulcerar e alcançar o fígado."},
+  {t:"p1a", q:"A forma infectante da amebíase, ingerida com água e alimentos, é:",
+   o:["o trofozoíto","a hemácia","o cisto maduro (tetranucleado)","o gametócito"], c:2,
+   e:"O cisto maduro (tetranucleado) resiste no ambiente e é a forma ingerida. O trofozoíto, frágil, não sobrevive ao ambiente nem ao ácido gástrico — por isso não é a forma de transmissão."},
+  {t:"p1a", q:"Sobre a infecção por Entamoeba histolytica, é correto afirmar que:",
+   o:["todo infectado desenvolve disenteria grave","a maioria dos infectados é assintomática (portadora), e só parte desenvolve doença invasiva","ela nunca causa sintomas","só acomete o fígado"], c:1,
+   e:"Entre 'ter o parasito' e 'estar doente' há um espectro: muitos são portadores assintomáticos que eliminam cistos. A doença invasiva (disenteria, abscesso) ocorre em parte dos casos, conforme carga, cepa e hospedeiro."},
+  {t:"p1a", q:"Uma pista que ajuda a diferenciar a disenteria amebiana da disenteria bacteriana é que a amebíase:",
+   o:["cursa sempre com febre muito alta","costuma cursar sem febre alta e mostra trofozoítos com eritrófagos no exame","nunca tem sangue nas fezes","é diagnosticada por raio-X"], c:1,
+   e:"Ambas dão fezes com sangue; a amebíase tende a não ter febre alta e mostra trofozoítos hematófagos (com eritrófagos) no exame, enquanto as bacterianas costumam ter febre e outro perfil. A confirmação é laboratorial."},
+
+  /* + Protozoários I — flagelados */
+  {t:"p1f", q:"A estrutura que ancora o trofozoíto de Giardia à mucosa do intestino é:",
+   o:["apenas o flagelo caudal","o disco adesivo ventral","uma ventosa bucal","o cinetoplasto"], c:1,
+   e:"O disco adesivo ventral fixa a Giardia ao enterócito; ao recobrir a superfície, prejudica a absorção — a base da diarreia por má absorção, sem invasão."},
+  {t:"p1f", q:"A Giardia causa má absorção porque habita, preferencialmente:",
+   o:["o intestino delgado alto (duodeno/jejuno), onde ocorre grande parte da absorção","o intestino grosso","o estômago","o fígado"], c:0,
+   e:"A Giardia coloniza o delgado alto (duodeno/jejuno), justamente a região de maior absorção — daí a esteatorreia (fezes gordurosas) e a perda de peso."},
+  {t:"p1f", q:"Ferver ou filtrar a água é especialmente recomendado contra a Giardia porque o seu cisto:",
+   o:["é destruído por qualquer desinfetante","é relativamente resistente à cloração comum","não existe na água","só vive no sangue"], c:1,
+   e:"O cisto de Giardia é relativamente resistente ao cloro nas concentrações usuais; por isso a fervura e a filtração são especialmente úteis — e explicam surtos ligados à água e a creches."},
+  {t:"p1f", q:"Na tricomoníase, trata-se sempre o casal porque:",
+   o:["o parasito vive na água","o homem costuma ser portador assintomático e reinfecta a parceira","a doença é hereditária","não há tratamento para a mulher"], c:1,
+   e:"O homem frequentemente é portador assintomático; se só a mulher é tratada, ele a reinfecta. Por isso o tratamento é do casal, com antiparasitário (nitroimidazólico)."},
+
+  /* + Protozoários II — Leishmania */
+  {t:"p2l", q:"A forma mucosa (espúndia) da leishmaniose tegumentar, que destrói cartilagem do nariz e da boca, caracteriza-se por:",
+   o:["muitos parasitos e pouca resposta imune","poucos parasitos e muito dano — lesão em grande parte imunopatológica (Th1 excessiva)","ausência de lesão","cura espontânea rápida"], c:1,
+   e:"Na forma mucosa (associada sobretudo à L. braziliensis) há poucos parasitos, mas resposta Th1 exagerada que destrói a mucosa: o dano é em grande parte imunopatológico. Montenegro fortemente positivo."},
+  {t:"p2l", q:"O tratamento da leishmaniose visceral apoia-se, sobretudo, em:",
+   o:["antibióticos comuns","antimoniais pentavalentes e anfotericina B (preferencialmente lipossomal nos casos graves)","apenas repouso","uma vacina curativa"], c:1,
+   e:"As opções são os antimoniais pentavalentes (1ª linha histórica) e a anfotericina B, preferencialmente lipossomal na LV grave e em grupos de risco. A LV tem cura — a letalidade decorre do diagnóstico tardio."},
+
+  /* + Protozoários II — T. cruzi / Chagas */
+  {t:"p2c", q:"Após a fase aguda, a maioria das pessoas infectadas pelo Trypanosoma cruzi evolui para:",
+   o:["cura espontânea completa","a forma indeterminada: sorologia positiva, sem sintomas nem lesão detectável","cardiopatia imediata","megacólon em semanas"], c:1,
+   e:"A maioria segue para a forma indeterminada (assintomática, com sorologia positiva), que pode durar a vida toda; parte evoluirá, com o tempo, para a forma cardíaca ou digestiva. 'Assintomático' não é 'curado'."},
+  {t:"p2c", q:"O diagnóstico da fase aguda da doença de Chagas baseia-se em:",
+   o:["duas sorologias concordantes","pesquisa direta do parasito no sangue (a parasitemia é alta nessa fase)","biópsia do cólon","teste de Montenegro"], c:1,
+   e:"Na fase aguda a parasitemia é alta: procura-se a tripomastigota diretamente no sangue (exame a fresco, gota espessa, concentração). Na fase crônica, ao contrário, usam-se duas sorologias de princípios diferentes."},
+
+  /* + Protozoários II — imunologia */
+  {t:"p2i", q:"A citocina que funciona como 'interruptor' da resposta protetora Th1, produzida pela célula dendrítica ao apresentar o parasito, é:",
+   o:["a IL-4","a IL-12","a IL-10","a IgE"], c:1,
+   e:"Muita IL-12 empurra o linfócito CD4 para o perfil Th1 (protetor contra intracelulares); um ambiente de IL-4 empurra para Th2. Quem controla a IL-12 no início controla o desfecho."},
+  {t:"p2i", q:"Dizer que uma lesão é 'imunopatológica' (a defesa que fere) significa que o dano ao tecido é causado:",
+   o:["diretamente por uma toxina do parasito","pela própria resposta imune do hospedeiro (ex.: mucosa na leishmaniose; coração na Chagas crônica)","pela falta total de defesa","por bactérias apenas"], c:1,
+   e:"Na imunopatologia, quem lesa o órgão é a resposta imune, não o parasito em si. Exemplos: a destruição da mucosa na leishmaniose mucosa e a miocardite da Chagas crônica (pouco parasito, muita inflamação)."},
+  {t:"p2i", q:"A imunorregulação (Tregs, IL-10) é descrita como 'lâmina de dois gumes' porque:",
+   o:["só causa mal","freia a inflamação e evita a imunopatologia, mas em excesso desliga a defesa e permite a persistência do parasito","aumenta sempre a resposta","não tem função"], c:1,
+   e:"Na dose certa, a regulação evita o dano (imunopatologia); em excesso, desliga a defesa e favorece a persistência — como a IL-10 alta, dominante na leishmaniose visceral ativa."},
+
+  /* ======= Protozoários III — Apicomplexa (Plasmodium e Toxoplasma) ======= */
+  /* Apicomplexa — geral */
+  {t:"p3g", q:"O que define o filo Apicomplexa (como Plasmodium e Toxoplasma) é:",
+   o:["a presença de flagelos longos","o complexo apical (maquinaria de invasão) e a vida intracelular obrigatória","a locomoção por pseudópodes","viverem livres na água"], c:1,
+   e:"Os Apicomplexa não têm locomoção evidente: caracterizam-se pelo complexo apical, uma maquinaria na ponta da célula para invadir a célula hospedeira, e são todos parasitos intracelulares."},
+  {t:"p3g", q:"A forma infectante inoculada pelo mosquito na malária e a forma latente do Toxoplasma no cisto tecidual são, respectivamente:",
+   o:["merozoíto e taquizoíto","esporozoíto e bradizoíto","gametócito e oocisto","trofozoíto e esquizonte"], c:1,
+   e:"O esporozoíto é a forma inoculada pelo Anopheles (malária); o bradizoíto é a forma de multiplicação lenta, dentro do cisto tecidual, responsável pela latência do Toxoplasma."},
+  {t:"p3g", q:"Uma marca dos ciclos dos Apicomplexa é:",
+   o:["não terem reprodução","alternarem reprodução assexuada e sexuada, muitas vezes em hospedeiros diferentes","reproduzirem-se só por cisto","serem sempre monoxenos"], c:1,
+   e:"Os ciclos alternam fases assexuada e sexuada — por exemplo, assexuada no ser humano e sexuada no mosquito (malária) ou no gato (toxoplasmose)."},
+  {t:"p3g", q:"Por que, também nos Apicomplexa, a defesa protetora é sobretudo a resposta celular?",
+   o:["porque vivem apenas no sangue","porque são intracelulares, e o anticorpo não os alcança dentro da célula","porque não há resposta imune contra eles","porque são bactérias"], c:1,
+   e:"Como Leishmania e T. cruzi, os Apicomplexa vivem dentro das células; o anticorpo não chega lá, e quem controla é a resposta celular (com destaque para o IFN-gama). O fio da imunologia continua."},
+  {t:"p3g", q:"As duas parasitoses de maior peso causadas por Apicomplexa, estudadas nesta aula, são:",
+   o:["amebíase e giardíase","malária (Plasmodium) e toxoplasmose (Toxoplasma gondii)","leishmaniose e doença de Chagas","ascaridíase e teníase"], c:1,
+   e:"Plasmodium (malária) e Toxoplasma gondii (toxoplasmose) são os Apicomplexa de maior importância — a malária como doença da Amazônia; a toxoplasmose, cosmopolita e relevante na gestação."},
+  {t:"p3g", q:"Diferentemente das amebas e dos flagelados, os Apicomplexa locomovem-se:",
+   o:["por pseudópodes","por flagelos livres","sem estruturas de locomoção evidentes — deslizam e, sobretudo, invadem a célula","por cílios longos"], c:2,
+   e:"Não têm pseudópodes nem flagelos livres: movem-se por deslizamento e usam o complexo apical para penetrar ativamente na célula hospedeira."},
+
+  /* Plasmodium — malária */
+  {t:"p3p", q:"A malária é transmitida ao ser humano pela picada:",
+   o:["do mosquito Aedes aegypti","da fêmea do mosquito Anopheles","do barbeiro","do flebotomíneo"], c:1,
+   e:"A malária é transmitida pela picada da fêmea do Anopheles (no Brasil, sobretudo o Anopheles darlingi). É um vetor biológico: o parasito completa nele a fase sexuada."},
+  {t:"p3p", q:"No Brasil, a espécie de Plasmodium mais frequente e a mais grave são, respectivamente:",
+   o:["P. falciparum e P. vivax","P. vivax (mais comum) e P. falciparum (mais grave)","P. malariae e P. ovale","P. knowlesi e P. vivax"], c:1,
+   e:"No Brasil predomina o P. vivax (cerca de 80% dos casos), que causa recaídas; o P. falciparum é menos comum, porém responsável pela malária grave (cerebral)."},
+  {t:"p3p", q:"O ciclo da malária no ser humano tem duas fases. A que causa os sintomas (febre, anemia) é a:",
+   o:["fase hepática (silenciosa)","fase sanguínea (eritrocítica), com ruptura das hemácias","fase no mosquito","fase de cisto"], c:1,
+   e:"Primeiro há a fase hepática, silenciosa (incubação); depois a fase sanguínea, em que os parasitos invadem e rompem as hemácias — é ela que causa a febre e a anemia."},
+  {t:"p3p", q:"As recaídas da malária por P. vivax, semanas ou meses após a infecção, devem-se a:",
+   o:["uma nova picada obrigatória","hipnozoítos: formas dormentes no fígado que despertam","cistos no intestino","resistência ao tratamento, sempre"], c:1,
+   e:"O P. vivax (e o P. ovale) deixa formas dormentes no fígado, os hipnozoítos, que despertam depois e reiniciam a doença — daí a recaída, sem nova picada. O tratamento precisa eliminá-los (cura radical)."},
+  {t:"p3p", q:"A febre em acessos (paroxismos) da malária ocorre porque:",
+   o:["o fígado é destruído de uma vez","as hemácias infectadas se rompem de forma sincronizada, liberando parasitos e pirógenos","o mosquito pica em horários fixos","há produção súbita de anticorpos"], c:1,
+   e:"A esquizogonia sincronizada culmina em rupturas simultâneas das hemácias, liberando parasitos e substâncias pirogênicas de uma vez — daí os acessos febris periódicos (terçã/quartã)."},
+  {t:"p3p", q:"A malária grave (quase sempre por P. falciparum), incluindo a malária cerebral, decorre principalmente:",
+   o:["da produção de muco","do sequestro: hemácias infectadas aderem ao endotélio e obstruem microvasos (inclusive cerebrais)","de uma alergia à picada","da falta de parasitos"], c:1,
+   e:"O P. falciparum induz citoaderência (via PfEMP1): a hemácia infectada gruda no endotélio e some da circulação (sequestro), obstruindo microvasos de órgãos vitais — no cérebro, a malária cerebral."},
+  {t:"p3p", q:"O exame considerado padrão-ouro para o diagnóstico da malária no Brasil é:",
+   o:["a sorologia","a gota espessa (sangue corado)","o teste de Montenegro","a cultura de fezes"], c:1,
+   e:"A gota espessa concentra o sangue e permite achar o parasito mesmo em baixa parasitemia — barata e disponível na rede. O esfregaço delgado complementa, identificando a espécie."},
+  {t:"p3p", q:"No tratamento da malária por P. vivax, a primaquina é essencial porque:",
+   o:["trata apenas a febre","elimina os hipnozoítos do fígado (cura radical), evitando as recaídas","é um antibiótico","substitui o diagnóstico"], c:1,
+   e:"A primaquina (ou a tafenoquina) elimina os hipnozoítos hepáticos — a cura radical do vivax. Atenção: pode causar hemólise na deficiência de G6PD, que deve ser investigada antes."},
+  {t:"p3p", q:"Sobre a malária no Brasil, é correto afirmar que:",
+   o:["está distribuída igualmente pelo país","cerca de 99% dos casos ocorrem na Amazônia Legal — que inclui o Maranhão","não existe mais no país","é mais comum na Região Sul"], c:1,
+   e:"A malária no Brasil concentra-se na Amazônia Legal (cerca de 99% dos casos), e o Maranhão é um dos nove estados dessa região — por isso a doença também é uma questão maranhense."},
+  {t:"p3p", q:"A 'premunição', na malária, refere-se a:",
+   o:["imunidade total e permanente após uma infecção","uma imunidade parcial e não estéril, que depende de exposição contínua","uma vacina de dose única","a ausência de qualquer imunidade"], c:1,
+   e:"A imunidade adquirida na malária é parcial e não elimina o parasito (premunição); depende de exposição contínua e se perde ao sair da área endêmica — por isso as crianças são as mais vulneráveis à forma grave."},
+  {t:"p3p", q:"O traço falciforme (portador de um gene da HbS) é frequente em áreas de malária porque:",
+   o:["causa a malária","confere proteção parcial contra a malária grave (vantagem do heterozigoto)","impede a picada do mosquito","não tem relação com a malária"], c:1,
+   e:"O portador de uma cópia da HbS resiste à malária grave — vantagem que mantém o gene frequente onde a malária é intensa (seleção balanceadora). A ausência do antígeno Duffy, por sua vez, protege contra o P. vivax."},
+  {t:"p3p", q:"Sobre as vacinas contra a malária (RTS,S e R21), é correto dizer que:",
+   o:["curam a malária já instalada","são as primeiras recomendadas pela OMS, de eficácia parcial e voltadas à fase pré-eritrocítica","substituem o mosquiteiro e o diagnóstico","não existem"], c:1,
+   e:"As vacinas RTS,S/AS01 e R21/Matrix-M são as primeiras recomendadas pela OMS (2021 e 2023), com alvo na fase pré-eritrocítica e eficácia parcial — somam-se às demais medidas, não as substituem."},
+
+  /* Toxoplasma — toxoplasmose */
+  {t:"p3t", q:"O hospedeiro definitivo do Toxoplasma gondii — único que elimina oocistos nas fezes — é:",
+   o:["o ser humano","o gato (e outros felinos)","o boi","o cão"], c:1,
+   e:"Só nos felinos ocorre a fase sexuada, com formação de oocistos eliminados nas fezes. Os demais animais (incluindo o ser humano) são hospedeiros intermediários, com apenas a fase assexuada."},
+  {t:"p3t", q:"As três formas do Toxoplasma — taquizoíto, bradizoíto e oocisto — correspondem, respectivamente, a:",
+   o:["latente, aguda e sanguínea","fase aguda (multiplicação rápida), forma latente no cisto tecidual e forma ambiental (do gato)","três espécies diferentes","formas de resistência iguais"], c:1,
+   e:"Taquizoíto = multiplicação rápida (fase aguda); bradizoíto = forma lenta, no cisto tecidual (latência); oocisto = forma ambiental, eliminada nas fezes do gato."},
+  {t:"p3t", q:"Entre as principais vias de transmissão da toxoplasmose ao ser humano NÃO se inclui:",
+   o:["ingestão de carne crua ou malpassada (cistos)","ingestão de oocistos (água, verduras mal lavadas, solo)","transmissão congênita (mãe para o feto)","o simples carinho no pelo do gato"], c:3,
+   e:"Transmite-se por carne malcozida, por oocistos do ambiente e pela via congênita. O afeto ao gato não transmite: o risco está nas fezes (oocistos) e na carne crua — não no pelo."},
+  {t:"p3t", q:"Na maioria das pessoas com imunidade normal, a toxoplasmose:",
+   o:["é sempre fatal","costuma ser assintomática ou uma síndrome benigna (com ínguas), e depois fica latente","causa cegueira imediata","exige internação"], c:1,
+   e:"No imunocompetente, a primo-infecção geralmente é assintomática ou dá um quadro benigno (linfonodal). Depois, o parasito recolhe-se aos cistos teciduais e fica latente por toda a vida."},
+  {t:"p3t", q:"A tríade clássica de Sabin, da toxoplasmose congênita grave, é composta por:",
+   o:["febre, tosse e diarreia","coriorretinite, calcificações cerebrais e hidrocefalia","anemia, icterícia e edema","cegueira, surdez e mudez"], c:1,
+   e:"A toxoplasmose congênita grave associa coriorretinite (lesão ocular), calcificações cerebrais e hidrocefalia — muitas vezes com convulsões. Muitos recém-nascidos, porém, nascem sem sinais aparentes."},
+  {t:"p3t", q:"Sobre a toxoplasmose congênita, o 'paradoxo do trimestre' indica que:",
+   o:["quanto mais tarde a infecção, mais grave","a transmissão ao feto aumenta com a idade gestacional, mas a gravidade é maior quando a infecção é precoce","não há risco em nenhum momento","só há risco antes da gravidez"], c:1,
+   e:"A chance de transmissão cresce do 1º ao 3º trimestre, mas a gravidade é inversa: infecção precoce transmite menos, porém causa dano maior; infecção tardia transmite mais, com quadros mais leves. Só há risco se a infecção é adquirida na gestação."},
+  {t:"p3t", q:"No paciente imunossuprimido (ex.: aids), a toxoplasmose costuma se manifestar como:",
+   o:["uma gripe leve","reativação, sobretudo como encefalite toxoplásmica (lesões cerebrais)","diarreia aquosa","anemia isolada"], c:1,
+   e:"Com a queda da imunidade celular, os bradizoítos dos cistos se reconvertem em taquizoítos (reativação). A forma mais importante é a encefalite toxoplásmica — uma das principais infecções oportunistas na aids."},
+  {t:"p3t", q:"A toxoplasmose ocular (coriorretinite) é importante no Brasil porque:",
+   o:["não existe aqui","cepas locais mais virulentas tornam a doença ocular mais frequente e grave","só ocorre em idosos","é causada por uma bactéria"], c:1,
+   e:"O Toxoplasma tem predileção pela retina; no Brasil, cepas atípicas mais virulentas tornam a coriorretinite mais frequente e severa — inclusive em imunocompetentes. Pode ser sequela da forma congênita."},
+  {t:"p3t", q:"Na toxoplasmose, o que mantém o parasito 'preso' (latente) nos cistos, e cuja queda leva à reativação, é:",
+   o:["o anticorpo IgE","a resposta celular Th1 (IFN-gama)","o sistema complemento","a IgA de mucosa"], c:1,
+   e:"A resposta Th1 (IL-12 → IFN-gama) contém os taquizoítos e força a conversão em bradizoítos encistados, mantendo a latência. Quando a imunidade celular cai, o equilíbrio se rompe e a doença reativa — o mesmo fio de Leishmania e Chagas."},
+  {t:"p3t", q:"Na investigação da toxoplasmose na gestante, o teste de avidez de IgG ajuda a:",
+   o:["tratar a doença","datar a infecção — avidez alta afasta infecção recente","medir a glicose","substituir o pré-natal"], c:1,
+   e:"A sorologia (IgM/IgG) somada ao teste de avidez de IgG ajuda a distinguir infecção antiga (sem risco fetal) de recente (com risco): avidez alta indica infecção há mais tempo. É a imunologia orientando o cuidado."},
+  {t:"p3t", q:"Uma orientação de prevenção da toxoplasmose para a gestante é:",
+   o:["comer carne malpassada","cozinhar bem as carnes, lavar as verduras e evitar contato com fezes de gato (ou usar luvas)","criar mais gatos","não lavar as mãos"], c:1,
+   e:"Prevenção: carne bem cozida (o calor mata os cistos), higiene de frutas e verduras, cuidado com a caixa de areia (luvas) e luvas na jardinagem. O pré-natal deve rastrear a sorologia."},
+  {t:"p3t", q:"O tratamento das formas ativas da toxoplasmose (congênita, ocular, no imunossuprimido) baseia-se em:",
+   o:["apenas repouso","sulfadiazina + pirimetamina + ácido folínico (e espiramicina na gestante, para reduzir a transmissão)","um antibiótico comum","não há tratamento"], c:1,
+   e:"O esquema clássico é sulfadiazina + pirimetamina + ácido folínico (este protege a medula óssea). Na gestante com infecção aguda usa-se a espiramicina, para reduzir a transmissão ao feto. O imunocompetente assintomático em geral não é tratado."},
+  /* ======= Protozoários III — Cryptosporidium ======= */
+  {t:"p3cr", q:"O Cryptosporidium é um protozoário do grupo dos:",
+   o:["flagelados","Apicomplexa (coccídios)","rizópodes (amebas)","ciliados"], c:1,
+   e:"O Cryptosporidium é um coccídio do filo Apicomplexa, aparentado ao Toxoplasma e ao Plasmodium. Como todo Apicomplexa, é intracelular e tem complexo apical de invasão — mas fica logo abaixo da membrana da célula intestinal (intracelular, mas extracitoplasmático)."},
+  {t:"p3cr", q:"Uma característica do oocisto do Cryptosporidium que explica os surtos de veiculação hídrica é:",
+   o:["ele só sobrevive em água salgada","ele é eliminado já infectante e é resistente à cloração usual","ele precisa de meses no solo para amadurecer","ele é destruído pelo cloro da rede de água"], c:1,
+   e:"O oocisto sai nas fezes já esporulado (infectante) e resiste às concentrações usuais de cloro — por isso a filtração e a fervura são as barreiras eficazes, e por isso ocorrem grandes surtos ligados à água tratada apenas por cloração."},
+  {t:"p3cr", q:"A diarreia da criptosporidiose é, tipicamente:",
+   o:["disentérica, com muito sangue e pus","aquosa e profusa, por alteração da absorção e secreção da mucosa","crônica e sem repercussão no estado geral","apenas uma constipação intermitente"], c:1,
+   e:"O Cryptosporidium não é invasivo como a ameba; ele se instala na borda das células intestinais e desregula o transporte de água e eletrólitos (menos absorção, mais secreção), gerando diarreia aquosa e volumosa, com risco de desidratação."},
+  {t:"p3cr", q:"Em quem a criptosporidiose costuma ser grave e prolongada (diarreia crônica e debilitante)?",
+   o:["em atletas","em imunodeprimidos, sobretudo na aids com CD4 baixo","em idosos vacinados","em recém-nascidos sadios"], c:1,
+   e:"No imunocompetente a infecção é autolimitada; no imunodeprimido (aids avançada, CD4 baixo) torna-se crônica, com diarreia profusa e emagrecimento — foi uma infecção definidora de aids. A recuperação depende de reconstituir a imunidade."},
+  {t:"p3cr", q:"O diagnóstico laboratorial clássico do Cryptosporidium nas fezes usa:",
+   o:["a coloração de Gram","uma coloração álcool-ácido resistente (Ziehl-Neelsen modificado/Kinyoun)","o método de Graham (fita adesiva)","a pesquisa de proglotes"], c:1,
+   e:"Os oocistos são pequenos (4–6 µm) e passam despercebidos na microscopia comum; coram-se de vermelho pela técnica álcool-ácido resistente (Ziehl-Neelsen modificado). Também há pesquisa de antígeno e PCR."},
+  {t:"p3cr", q:"Sobre o tratamento da criptosporidiose, é correto:",
+   o:["o metronidazol é sempre curativo","no imunocompetente é de suporte (hidratação); a nitazoxanida ajuda, e no imunodeprimido o essencial é reconstituir a imunidade","não existe medida nenhuma além de antibiótico","o tratamento de escolha é o praziquantel"], c:1,
+   e:"No imunocompetente a doença é autolimitada e o foco é a hidratação; a nitazoxanida encurta o quadro. No paciente com aids, o decisivo é restaurar a imunidade (terapia antirretroviral) — sem isso, os fármacos têm eficácia limitada."},
+
+  /* ======= Helmintos I — Nematódeos intestinais ======= */
+  {t:"h1g", q:"Uma diferença central entre helmintos e protozoários, com consequência epidemiológica, é que os helmintos:",
+   o:["multiplicam-se rapidamente dentro do hospedeiro","em regra NÃO se multiplicam no hospedeiro — a carga depende de reinfecções (doença dose-dependente)","nunca causam doença","são todos microscópicos"], c:1,
+   e:"Salvo exceções (Strongyloides), uma larva vira um verme adulto; a carga parasitária depende de quantas vezes a pessoa se expôs. Por isso a doença é dose-dependente e, sem saneamento, a pessoa se reinfecta após o tratamento."},
+  {t:"h1g", q:"O 'ciclo de Loss' (migração pulmonar) é realizado por qual conjunto de vermes desta aula?",
+   o:["Trichuris e Enterobius","Ascaris, ancilostomídeos e Strongyloides","apenas o Enterobius","nenhum nematódeo intestinal"], c:1,
+   e:"No ciclo de Loss a larva cai na circulação, atravessa o pulmão, sobe pela traqueia, é deglutida e chega ao intestino. Fazem-no Ascaris, ancilostomídeos e Strongyloides — por isso podem dar fase pulmonar (Löffler). Trichuris e Enterobius têm ciclo direto."},
+  {t:"h1g", q:"A distinção entre larva rabditoide e larva filarioide é importante porque:",
+   o:["a rabditoide é a forma infectante e a filarioide se alimenta","a filarioide (L3) é a forma infectante que penetra o hospedeiro; a rabditoide é a jovem que se alimenta no solo/fezes","são a mesma coisa","ambas vivem só no sangue"], c:1,
+   e:"A rabditoide (esôfago com bulbo) alimenta-se no ambiente; a filarioide (esôfago longo e reto) não se alimenta e é a que infecta — penetrando a pele (ancilostomídeos, Strongyloides). A distinção orienta o diagnóstico e o ciclo."},
+  {t:"h1g", q:"Chamar Ascaris, Trichuris e ancilostomídeos de 'geo-helmintos' significa que:",
+   o:["vivem apenas no sangue","seu ciclo passa obrigatoriamente por uma fase de maturação no solo","são transmitidos por mosquitos","não causam doença no homem"], c:1,
+   e:"Geo-helminto é o helminto cujo ovo embriona (ou cuja larva amadurece) no solo antes de infectar. São doenças do saneamento precário. A exceção da aula é o Enterobius, de transmissão direta pessoa a pessoa."},
+  {t:"h1g", q:"A chave que melhor organiza os nematódeos intestinais da aula é a via de entrada. Entram PELA PELE (larva penetra):",
+   o:["Ascaris e Enterobius","ancilostomídeos e Strongyloides","Trichuris e Ascaris","apenas o Enterobius"], c:1,
+   e:"Ancilostomídeos e Strongyloides entram pela larva filarioide que penetra a pele (em geral dos pés). Ascaris, Trichuris e Enterobius entram pela boca (ovo ingerido). A via prevê o ciclo e a prevenção (ex.: calçado)."},
+
+  {t:"h1a", q:"O ovo com casca espessa recoberta por uma camada mamilonada (verrucosa), castanho pela bile, é o do:",
+   o:["Trichuris trichiura","Ascaris lumbricoides","Enterobius vermicularis","ancilostomídeo"], c:1,
+   e:"O ovo mamilonado (corticado) é a marca do Ascaris fértil. Quando perde a camada externa, fala-se em ovo decorticado. É o maior nematódeo intestinal, com fêmea de 20–40 cm."},
+  {t:"h1a", q:"As complicações mais temidas da ascaridíase, ligadas ao tamanho e ao hábito migratório do verme adulto, incluem:",
+   o:["anemia por perda de sangue","obstrução intestinal e migração para as vias biliares (obstrução biliar, pancreatite)","prolapso retal","cegueira"], c:1,
+   e:"Em cargas altas, um novelo de vermes pode obstruir o intestino; adultos podem migrar para o colédoco (obstrução biliar, colangite, pancreatite), o apêndice, ou sair pela boca/nariz. A anemia é dos ancilostomídeos; o prolapso, do Trichuris."},
+  {t:"h1a", q:"Uma criança com Ascaris apresenta tosse, chiado e eosinofilia antes de eliminar vermes. A explicação é:",
+   o:["alergia a alimento","a síndrome de Löffler — pneumonite pela passagem das larvas no pulmão (fase migratória)","asma sem relação com o verme","infecção bacteriana"], c:1,
+   e:"Na fase migratória (ciclo de Loss), as larvas atravessam o pulmão e causam a síndrome de Löffler (tosse, broncoespasmo, eosinofilia, infiltrados fugazes). Nessa fase, o exame de fezes ainda é negativo — os adultos não existem."},
+  {t:"h1a", q:"O ovo do Ascaris recém-eliminado nas fezes:",
+   o:["já é infectante e contamina na hora","NÃO é infectante; precisa de semanas no solo para embrionar (formar a larva dentro)","nunca se torna infectante","só infecta o boi"], c:1,
+   e:"É o que faz do Ascaris um geo-helminto: o ovo precisa amadurecer no solo úmido e quente até conter a larva (ovo embrionado). Só então, ingerido, transmite a doença — por isso a transmissão exige passagem pelo ambiente."},
+  {t:"h1a", q:"O ovo em forma de barril, com dois tampões (opérculos) hialinos polares, é do:",
+   o:["Ascaris lumbricoides","Trichuris trichiura","Strongyloides stercoralis","Taenia"], c:1,
+   e:"O ovo em barril com dois tampões polares é a assinatura inconfundível do Trichuris trichiura (o tricocéfalo, verme em chicote do intestino grosso)."},
+  {t:"h1a", q:"O prolapso retal em uma criança de área sem saneamento sugere, entre as verminoses:",
+   o:["ascaridíase leve","tricuríase maciça (colite crônica e tenesmo)","enterobíase","toxoplasmose"], c:1,
+   e:"Na tricuríase maciça, a colite crônica e o esforço evacuatório (tenesmo) levam à eversão do reto, muitas vezes com vermes visíveis sobre a mucosa. É a manifestação clássica da alta carga de Trichuris na criança."},
+  {t:"h1a", q:"Comparado ao Ascaris, o Trichuris trichiura:",
+   o:["tem ciclo com migração pulmonar","tem ciclo direto (sem pulmão) e costuma responder MENOS aos benzimidazóis em dose única","não vive no intestino","causa anemia grave por hematofagia"], c:1,
+   e:"O Trichuris vai da boca ao intestino grosso sem migração pulmonar (não dá Löffler) e costuma exigir esquema de vários dias ou associação (ex.: com ivermectina), pois responde menos que o Ascaris ao tratamento em dose única."},
+
+  {t:"h1n", q:"A anemia ferropriva crônica ('amarelão') é a marca clínica de qual verminose?",
+   o:["ascaridíase","ancilostomíase (Ancylostoma/Necator)","enterobíase","tricuríase"], c:1,
+   e:"Os ancilostomídeos fixam-se na mucosa do delgado e sugam sangue (espoliação), mantendo os pontos de fixação sangrando. A perda crônica de ferro leva à anemia ferropriva — a palidez amarelada do 'amarelão' (opilação)."},
+  {t:"h1n", q:"A medida de prevenção mais simples e específica contra os ancilostomídeos e o Strongyloides é:",
+   o:["ferver a carne","usar calçado (a larva filarioide penetra a pele dos pés)","dormir sob mosquiteiro","clorar a água"], c:1,
+   e:"A larva filarioide desses vermes penetra ativamente a pele, em geral dos pés descalços, no solo úmido contaminado. O calçado interrompe essa via de entrada — medida barata e de grande impacto."},
+  {t:"h1n", q:"A diferença anatômica entre Ancylostoma duodenale e Necator americanus está na cápsula bucal:",
+   o:["Ancylostoma tem lâminas; Necator tem dentes","Ancylostoma tem dentes; Necator tem lâminas (placas) cortantes","ambos têm ventosas","nenhum tem cápsula bucal"], c:1,
+   e:"O Ancylostoma tem dois pares de dentes ventrais; o Necator tem lâminas cortantes. É o critério para diferenciar as espécies no verme adulto — os ovos das duas são idênticos ao microscópio."},
+  {t:"h1n", q:"Sobre os ovos de Ancylostoma e Necator no exame de fezes:",
+   o:["são bem diferentes e fáceis de separar","são idênticos ao microscópio — não distinguem as espécies","têm tampões polares","têm espículo lateral"], c:1,
+   e:"Os ovos são ovais, de casca fina e transparente, com mórula central, e são indistinguíveis entre as duas espécies. Diferenciá-las exige cultivar e examinar as larvas (Harada-Mori), o que raramente muda a conduta."},
+  {t:"h1n", q:"Além da anemia, a ancilostomíase relaciona-se historicamente com:",
+   o:["a figura do Jeca Tatu e as campanhas de saneamento rural no Brasil","a malária urbana","a dengue","a doença de Chagas cardíaca"], c:1,
+   e:"O 'amarelão' foi símbolo do abandono do homem do campo (o Jeca Tatu de Monteiro Lobato) e bandeira das campanhas de saneamento rural — a apatia e a palidez eram a anemia por espoliação, não preguiça."},
+
+  {t:"h1s", q:"O que distingue o Strongyloides stercoralis dos demais nematódeos intestinais no exame de fezes é que ele elimina:",
+   o:["ovos mamilonados","larvas (não ovos)","proglotes","cistos"], c:1,
+   e:"O Strongyloides elimina larvas rabditoides nas fezes (os ovos eclodem ainda no intestino). Por isso o exame procura larvas — e o método de Baermann, que aproveita a mobilidade delas em água morna, é o mais indicado."},
+  {t:"h1s", q:"O que torna o Strongyloides o mais perigoso do grupo é a sua capacidade de:",
+   o:["voar","autoinfecção (multiplicar-se dentro do hospedeiro), que na imunossupressão vira hiperinfecção fatal","causar apenas coceira","viver só no solo"], c:1,
+   e:"A autoinfecção mantém a infecção por décadas sem nova exposição; se a imunidade celular cai (corticoide, HTLV-1), ela acelera para a hiperinfecção — larvas em profusão, disseminação e sepse. Por isso se investiga Strongyloides antes de imunossuprimir."},
+  {t:"h1s", q:"Antes de iniciar corticoide em dose alta, convém investigar/tratar o Strongyloides porque:",
+   o:["o corticoide mata o verme","o corticoide deprime a imunidade que contém a autoinfecção e pode desencadear hiperinfecção fatal","o corticoide causa a infecção","não há relação nenhuma"], c:1,
+   e:"O corticoide reduz a imunidade celular (e tem efeito sobre o próprio verme) que mantém a autoinfecção sob controle; em portador silencioso, pode disparar a hiperinfecção, com alta letalidade. É o grande alerta clínico da aula."},
+  {t:"h1s", q:"O método de escolha para diagnosticar o Enterobius vermicularis (oxiúro) é:",
+   o:["o exame de fezes comum","o método de Graham (fita adesiva na região perianal, pela manhã)","o Kato-Katz","a sorologia"], c:1,
+   e:"A fêmea deposita os ovos na pele perianal (não nas fezes); por isso o exame de fezes costuma ser negativo. A fita adesiva colhe os ovos na pele, de manhã antes do banho, repetida em vários dias."},
+  {t:"h1s", q:"O sintoma central da enterobíase e a conduta epidemiológica correta são:",
+   o:["diarreia com sangue; tratar só a criança","prurido anal noturno; tratar toda a família e reforçar a higiene","febre alta; internar","tosse; usar antibiótico"], c:1,
+   e:"O prurido anal noturno (quando a fêmea desce à pele perianal) é a marca. Como a transmissão é direta e cruzada (mãos, roupas), trata-se todos os conviventes ao mesmo tempo, repetindo a dose após duas semanas, com medidas de higiene."},
+  {t:"h1s", q:"Diferentemente dos geo-helmintos, o Enterobius vermicularis:",
+   o:["depende de meses no solo","é de transmissão direta pessoa a pessoa (não depende do saneamento, e sim do convívio)","é transmitido por mosquito","só infecta animais"], c:1,
+   e:"Os ovos, postos na pele perianal, embrionam em horas e passam de mão em mão, roupas e objetos. Por isso a enterobíase atinge qualquer classe social e se espalha em famílias, creches e escolas — é doença de convívio, não de esgoto."},
+
+  {t:"h1i", q:"A 'virada imunológica' ao passar dos protozoários para os helmintos é, sobretudo, a passagem de uma resposta:",
+   o:["Th2 para Th1","Th1 (celular, matar por dentro) para Th2 (expulsar o verme extracelular)","inata para nenhuma","humoral para nenhuma"], c:1,
+   e:"Contra o protozoário intracelular protege o Th1 (IFN-γ, macrófago); contra o verme grande e extracelular, monta-se o Th2 (IL-4/5/13, IgE, eosinófilos, mastócitos), voltado a expulsar o intruso do tubo digestivo."},
+  {t:"h1i", q:"As citocinas e células características da resposta do tipo 2 contra os helmintos são:",
+   o:["IFN-γ e macrófagos","IL-4, IL-5, IL-13, com IgE, eosinófilos e mastócitos","apenas neutrófilos","complemento apenas"], c:1,
+   e:"A IL-4/IL-13 promovem IgE e muco; a IL-5 expande os eosinófilos. É a assinatura Th2, também presente (desregulada) nas alergias."},
+  {t:"h1i", q:"A estratégia de 'weep and sweep' (molhar e varrer) da mucosa contra os vermes consiste em:",
+   o:["produzir mais ácido no estômago","aumentar o muco (weep) e a motilidade/contração intestinal (sweep) para desprender e expulsar o verme","parar o peristaltismo","fagocitar o verme inteiro"], c:1,
+   e:"A IL-13 estimula as células caliciformes (mais muco) e a contratilidade intestinal; juntos, muco e peristaltismo desprendem e empurram o verme para fora. É a expulsão física do parasito, típica da resposta Th2."},
+  {t:"h1i", q:"Sobre a eosinofilia como pista de helmintíase, é correto:",
+   o:["está sempre presente e sempre alta","é útil (sobe na migração das larvas), mas pode ser discreta na fase luminal e SUMIR na hiperinfecção por Strongyloides","nunca ocorre em verminoses","indica sempre bactéria"], c:1,
+   e:"A eosinofilia (IL-5) acompanha sobretudo a migração tecidual das larvas. Sua ausência não descarta verminose: é discreta na fase intestinal e pode desaparecer na hiperinfecção grave por Strongyloides — às vezes sinal de mau prognóstico."},
+  {t:"h1i", q:"A chamada 'hipótese da higiene' relaciona-se à imunologia dos helmintos porque:",
+   o:["os vermes deixam o ambiente mais limpo","os helmintos induzem forte imunorregulação, e a menor exposição a eles na infância se associa a mais alergias e autoimunidade","a infecção é sempre benéfica e desejável","não há qualquer relação"], c:1,
+   e:"Os helmintos estimulam mecanismos reguladores (IL-10, Treg) que 'acalmam' a resposta imune; a ideia é que a ausência dessa estimulação na infância contribua para alergias/autoimunidade. Isso não torna a verminose desejável — ela adoece."},
+
+  /* ======= Helmintos II — Teciduais e filárias ======= */
+  {t:"h2f", q:"A filariose linfática (que pode evoluir para elefantíase) é causada, sobretudo, por:",
+   o:["Onchocerca volvulus","Wuchereria bancrofti","Toxocara canis","Ascaris lumbricoides"], c:1,
+   e:"A Wuchereria bancrofti é a principal filária linfática; o verme adulto vive nos vasos linfáticos. No Brasil, persiste em focos urbanos (região de Recife), transmitida pelo mosquito Culex."},
+  {t:"h2f", q:"A elefantíase (linfedema volumoso de membros ou bolsa escrotal) resulta, na filariose, de:",
+   o:["obstrução e inflamação crônica dos vasos linfáticos pelos vermes adultos","invasão do cérebro","perda de sangue pelo intestino","destruição das hemácias"], c:1,
+   e:"Os vermes adultos nos linfáticos, e a inflamação repetida ao seu redor, obstruem a drenagem da linfa; o acúmulo crônico causa o linfedema fibrosante — a elefantíase. A hidrocele é outra manifestação comum."},
+  {t:"h2f", q:"No diagnóstico da filariose linfática por Wuchereria, a pesquisa de microfilárias no sangue costuma render mais quando a coleta é feita:",
+   o:["ao meio-dia","à noite (periodicidade noturna das microfilárias)","logo após o almoço","apenas após um ano"], c:1,
+   e:"As microfilárias da W. bancrofti têm periodicidade noturna — circulam no sangue periférico sobretudo à noite, coincidindo com o hábito do vetor. Por isso a gota espessa é colhida à noite. Há também pesquisa de antígeno."},
+  {t:"h2f", q:"A oncocercose ('cegueira dos rios'), causada por Onchocerca volvulus, é transmitida pela picada:",
+   o:["do mosquito Anopheles","do simulídeo (borrachudo/piúm), que se cria em rios de correnteza","do barbeiro","da fêmea do Aedes"], c:1,
+   e:"O vetor é o Simulium (borrachudo/piúm), que se reproduz em águas correntes — daí a doença concentrar-se perto de rios ('cegueira dos rios'). O verme adulto forma nódulos subcutâneos (oncocercomas)."},
+  {t:"h2f", q:"Diferentemente da Wuchereria, as microfilárias da Onchocerca são encontradas principalmente:",
+   o:["no sangue, com periodicidade noturna","na pele e nos olhos (não no sangue) — daí o dano cutâneo e a cegueira","na urina","nas fezes"], c:1,
+   e:"As microfilárias da Onchocerca migram pela pele (dermatite, despigmentação) e alcançam os olhos, onde a inflamação repetida leva à cegueira. O diagnóstico usa a biópsia de pele ('skin snip'), não o sangue."},
+  {t:"h2f", q:"Sobre o tratamento das filárias, é correto associar:",
+   o:["oncocercose → dietilcarbamazina (DEC) em primeira linha","oncocercose → ivermectina; e a doxiciclina age matando a bactéria simbionte Wolbachia","filariose → praziquantel","nenhuma tem tratamento"], c:1,
+   e:"Na oncocercose usa-se ivermectina (a DEC é perigosa — reação de Mazzotti); na filariose linfática, a DEC. A doxiciclina depleta a Wolbachia (bactéria endossimbionte das filárias), o que esteriliza e mata os vermes adultos."},
+  {t:"h2f", q:"A hidrocele (acúmulo de líquido na bolsa escrotal), frequente em áreas endêmicas, é uma manifestação de qual filariose?",
+   o:["oncocercose","filariose linfática (Wuchereria bancrofti)","toxocaríase","larva migrans cutânea"], c:1,
+   e:"A obstrução linfática pela W. bancrofti compromete a drenagem da região genital, causando hidrocele — uma das manifestações crônicas mais comuns da filariose bancroftiana, ao lado do linfedema de membros."},
+
+  {t:"h2t", q:"A larva migrans visceral, com febre e eosinofilia acentuada em uma criança que brinca em quintal com cães, deve-se sobretudo a:",
+   o:["Ascaris humano","Toxocara canis/cati (o 'áscaris' do cão e do gato)","Enterobius","Taenia"], c:1,
+   e:"A criança ingere ovos de Toxocara eliminados por cães/gatos (geofagia, mãos sujas de terra). Como o homem é hospedeiro impróprio, a larva não vira adulto: migra pelas vísceras (fígado, pulmão) causando inflamação e eosinofilia intensa."},
+  {t:"h2t", q:"Na larva migrans (visceral ou ocular) por Toxocara, a larva no ser humano:",
+   o:["completa o ciclo e vira verme adulto no intestino","NÃO completa o ciclo (hospedeiro impróprio) e fica migrando pelos tecidos","multiplica-se no sangue","forma cistos no músculo apenas"], c:1,
+   e:"O homem é um hospedeiro acidental/impróprio: a larva de Toxocara não amadurece, mas sobrevive migrando por órgãos, causando dano inflamatório. Não há, portanto, ovos nas fezes humanas — o diagnóstico é clínico e sorológico."},
+  {t:"h2t", q:"A larva migrans OCULAR por Toxocara é clinicamente importante porque:",
+   o:["não causa sintoma","pode simular um retinoblastoma (tumor) e levar a perda visual, entrando no diagnóstico diferencial","cura sempre sozinha em um dia","só ocorre em idosos"], c:1,
+   e:"A larva que alcança o olho provoca uma reação inflamatória (granuloma) na retina que pode imitar um retinoblastoma na criança — um diferencial crucial, pois a conduta é totalmente distinta."},
+  {t:"h2t", q:"O 'bicho geográfico' (larva migrans cutânea), com trajeto serpiginoso e pruriginoso na pele, é causado por:",
+   o:["larva de ancilostomídeo de cães e gatos que penetra a pele humana","o verme adulto do Ascaris","a picada do barbeiro","o Schistosoma"], c:1,
+   e:"Larvas de Ancylostoma de cães e gatos penetram a pele humana (praia, areia, solo com fezes de animais). Como o homem é hospedeiro impróprio, a larva não completa o ciclo: fica presa migrando na epiderme, desenhando o trajeto serpiginoso."},
+  {t:"h2t", q:"Na larva migrans cutânea, o trajeto avança na pele porque a larva:",
+   o:["está no sangue","fica 'perdida' na epiderme de um hospedeiro impróprio, sem conseguir completar o ciclo","forma cistos profundos","penetrou no cérebro"], c:1,
+   e:"Diferente do ancilostomídeo humano (que segue para o pulmão e o intestino), a larva de ancilostomídeo animal não consegue seguir o ciclo no homem e migra sem rumo na epiderme por dias a semanas — daí o avanço do trajeto pruriginoso."},
+  {t:"h2t", q:"Uma medida de prevenção comum à toxocaríase e à larva migrans cutânea é:",
+   o:["ferver a água","controlar as fezes de cães e gatos (vermifugação, higiene) e proteger a pele/mãos do solo contaminado","usar mosquiteiro","clorar piscinas"], c:1,
+   e:"Ambas vêm de larvas/ovos de vermes de cães e gatos no solo. Vermifugar os animais, recolher as fezes, lavar as mãos após contato com terra e usar calçado/proteção na areia reduzem as duas doenças — um exemplo de Uma Só Saúde."},
+
+  {t:"h2i", q:"A resposta imune dominante contra as filárias e as larvas teciduais é, como nos demais helmintos:",
+   o:["Th1 com macrófagos","Th2, com IgE e eosinofilia marcada","apenas complemento","nenhuma resposta"], c:1,
+   e:"A resposta Th2 (IL-4/5/13), com IgE e eosinófilos, é a regra contra helmintos. A eosinofilia costuma ser especialmente intensa nas formas com larvas migrando pelos tecidos (ex.: toxocaríase)."},
+  {t:"h2i", q:"A bactéria endossimbionte Wolbachia, presente em muitas filárias, é importante porque:",
+   o:["não tem função nenhuma","contribui para a inflamação da doença e é alvo terapêutico (a doxiciclina, ao eliminá-la, mata/esteriliza o verme)","é o agente da malária","protege o hospedeiro"], c:1,
+   e:"A Wolbachia vive dentro da filária e é necessária à sua fertilidade e sobrevida; seus produtos amplificam a inflamação. Tratar com doxiciclina depleta a bactéria, esterilizando e matando o verme adulto — uma estratégia antifilarial elegante."},
+  {t:"h2i", q:"Muitos portadores de filariose têm alta microfilaremia mas poucos sintomas. Isso reflete:",
+   o:["ausência de parasito","imunomodulação/tolerância induzida pelo parasito (resposta reguladora que 'acalma' a inflamação)","cura espontânea imediata","erro de exame"], c:1,
+   e:"As filárias induzem forte regulação imune (IL-10, Treg), que reduz a inflamação e permite a convivência com muitas microfilárias. Quando esse equilíbrio se rompe (ou os vermes morrem), a inflamação — e a doença — se manifesta."},
+  {t:"h2i", q:"A reação de Mazzotti (prurido intenso, febre e inflamação após tratar oncocercose com dietilcarbamazina) ilustra que:",
+   o:["o fármaco é inócuo","a MORTE maciça de microfilárias desencadeia uma reação inflamatória intensa — por isso se evita a DEC na oncocercose","a doença não tem tratamento","as microfilárias são inofensivas"], c:1,
+   e:"Matar muitas microfilárias de uma vez libera antígenos e desencadeia forte inflamação (a reação de Mazzotti), que na oncocercose pode agravar o dano ocular. Por isso usa-se ivermectina (mais gradual) e se evita a DEC."},
+  {t:"h2i", q:"O mecanismo efetor clássico contra as larvas de helmintos nos tecidos envolve:",
+   o:["fagocitose simples pelo neutrófilo","anticorpos (IgE/IgG) revestindo a larva e eosinófilos a destruindo por ADCC","apenas o complemento","linfócitos B isolados"], c:1,
+   e:"A larva é grande demais para ser fagocitada: anticorpos a revestem e os eosinófilos (e outras células) liberam seu conteúdo tóxico sobre ela — a citotoxicidade dependente de anticorpo (ADCC). É a arma da resposta Th2 contra os vermes teciduais."},
+
+  /* ======= Helmintos III — Cestódeos e trematódeos ======= */
+  {t:"h3c", q:"A diferença de plano corporal entre cestódeos e trematódeos é:",
+   o:["cestódeos são cilíndricos; trematódeos, segmentados","cestódeos são em fita e segmentados (sem tubo digestivo); trematódeos são foliáceos, com duas ventosas","são idênticos","cestódeos têm ventosas; trematódeos têm proglotes"], c:1,
+   e:"O cestódeo é uma fita segmentada (proglotes), sem tubo digestivo, que absorve pelo tegumento (a tênia). O trematódeo é foliáceo (em folha), não segmentado, com duas ventosas e tubo digestivo incompleto (Schistosoma, Fasciola)."},
+  {t:"h3c", q:"Sobre o complexo teníase–cisticercose (Taenia solium), a associação CORRETA é:",
+   o:["comer o ovo dá teníase; comer a carne dá cisticercose","comer a larva (cisticerco) na carne dá teníase; engolir o ovo (das fezes) dá cisticercose","as duas vêm da carne","as duas vêm da água"], c:1,
+   e:"Comer o cisticerco na carne malcozida → verme adulto no intestino (teníase). Engolir os ovos (fecal-oral, de um portador humano) → a larva vai aos tecidos (cisticercose). Mesmo parasito, papéis opostos — a chave da aula."},
+  {t:"h3c", q:"A Taenia solium e a Taenia saginata associam-se, respectivamente, à carne de:",
+   o:["boi e porco","porco e boi","peixe e porco","cão e boi"], c:1,
+   e:"A T. solium é a tênia do porco; a T. saginata, a do boi. Ambas dão teníase (verme intestinal), mas só a solium causa cisticercose humana (pelos ovos)."},
+  {t:"h3c", q:"No escólex, o que distingue a Taenia solium da T. saginata é:",
+   o:["a solium não tem ventosas","a solium tem rostelo armado com dupla coroa de ganchos; a saginata é inerme (sem ganchos)","a saginata tem ganchos e a solium não","ambas têm ganchos idênticos"], c:1,
+   e:"A solium tem escólex armado (rostelo com ganchos); a saginata é inerme. Como a espécie com ganchos é a perigosa (causa cisticercose), identificar os ganchos é identificar o risco."},
+  {t:"h3c", q:"Para diferenciar Taenia solium de T. saginata na rotina, usa-se a proglote grávida porque:",
+   o:["os ovos das duas são diferentes","os ovos são idênticos — conta-se então o número de ramificações uterinas (poucas na solium, muitas na saginata)","a proglote não serve para nada","só o sangue diferencia"], c:1,
+   e:"Os ovos são indistinguíveis; como o escólex raramente é recuperado, conta-se as ramificações do útero da proglote grávida: cerca de 7–13 por lado na solium, 15–30 (até 40) na saginata."},
+  {t:"h3c", q:"A tênia adulta vive no intestino e, apesar de medir metros, dá poucos sintomas porque:",
+   o:["não se alimenta","não tem tubo digestivo e absorve nutrientes discretamente pelo tegumento; trata-se com praziquantel ou niclosamida","vive no sangue","é uma bactéria"], c:1,
+   e:"Sem boca nem intestino, a tênia absorve o alimento já digerido pela superfície (tegumento), de forma discreta. O tratamento (praziquantel ou niclosamida) é eficaz; a cura exige eliminar o escólex, senão o verme regenera."},
+
+  {t:"h3n", q:"A cisticercose humana é adquirida por:",
+   o:["comer carne de porco malcozida","engolir os ovos da Taenia solium (via fecal-oral, das fezes de um portador da tênia)","picada de mosquito","contato com água de rio"], c:1,
+   e:"A cisticercose vem do OVO, não da carne. Comer carne com cisticerco dá teníase. Por isso a cisticercose é doença de higiene/saneamento e pode ocorrer até em quem nunca comeu porco (inclusive vegetarianos)."},
+  {t:"h3n", q:"Na cisticercose, o ser humano funciona como:",
+   o:["hospedeiro definitivo (tem o verme adulto)","hospedeiro intermediário acidental (tem a larva, o cisticerco), no lugar do porco","vetor","reservatório do mosquito"], c:1,
+   e:"Ao engolir os ovos, o homem toma o papel do porco: a larva se aloja nos tecidos (músculo, olho, cérebro). A fonte dos ovos é sempre um portador humano de teníase — às vezes o próprio doente (autoinfecção)."},
+  {t:"h3n", q:"A neurocisticercose é clinicamente relevante porque, em áreas endêmicas, é:",
+   o:["uma causa rara de dor de cabeça","a principal causa de epilepsia adquirida no adulto","uma doença sem sintomas","uma infecção de pele"], c:1,
+   e:"Os cisticercos no sistema nervoso central provocam crises convulsivas (o sintoma mais comum), hipertensão intracraniana e hidrocefalia. É a maior causa de epilepsia adquirida onde a teníase por T. solium é endêmica."},
+  {t:"h3n", q:"Na neurocisticercose, os sintomas costumam surgir sobretudo quando:",
+   o:["o cisto está vivo e íntegro","o cisto MORRE (natural ou pelo tratamento) e a inflamação, antes contida, se manifesta","o parasito calcifica e some","a pessoa come porco"], c:1,
+   e:"O cisto vivo modula a imunidade e fica quieto, muitas vezes por anos. A sua morte expõe os antígenos e desencadeia a inflamação (edema, crises). Por isso o inimigo, na neurocisticercose, é a reação à morte do cisto — não o cisto quieto."},
+  {t:"h3n", q:"Sobre o tratamento da neurocisticercose, é correto:",
+   o:["dá-se antiparasitário isolado, o mais rápido possível","o antiparasitário é associado a CORTICOIDE (para conter a inflamação da morte do cisto); cistos calcificados não recebem antiparasitário","nunca se usa remédio","trata-se com praziquantel em dose única sempre"], c:1,
+   e:"Como matar o cisto inflama, o albendazol (ou praziquantel) vem com corticoide, e a indicação depende do número/estágio dos cistos. Cistos calcificados (mortos) não se tratam com antiparasitário — trata-se a epilepsia."},
+  {t:"h3n", q:"O diagnóstico da neurocisticercose apoia-se em:",
+   o:["exame de fezes (ovos do cisticerco)","imagem (TC/RM) e sorologia (EITB) — o paciente não elimina ovos, pois não tem o verme adulto","hemocultura","teste de urina"], c:1,
+   e:"Como a doença é da larva no tecido (e não do verme adulto no intestino), não há ovos nas fezes: diagnostica-se pela imagem (cisto, às vezes com escólex; edema; calcificação) e pela sorologia específica (EITB)."},
+
+  {t:"h3h", q:"A Hymenolepis nana (tênia anã) distingue-se das grandes tênias por:",
+   o:["ser a maior de todas","completar o ciclo direto (pessoa a pessoa, sem hospedeiro intermediário obrigatório) e fazer autoinfecção — comum em crianças","viver no sangue","precisar de carne de boi"], c:1,
+   e:"É a menor e a mais comum das tênias; dispensa hospedeiro intermediário e faz autoinfecção interna, o que permite cargas altas e persistência, sobretudo em crianças de ambientes coletivos. Depende de convívio/higiene, não de carne."},
+  {t:"h3h", q:"O ovo da Hymenolepis nana caracteriza-se por:",
+   o:["ter espículo lateral","apresentar filamentos polares que partem dos polos do embrióforo, com a oncosfera hexacanta central","ser em forma de barril com tampões","ter camada mamilonada"], c:1,
+   e:"Os filamentos polares (4–8 fios saindo dos polos) são a marca do ovo da H. nana e o distinguem do da H. diminuta (que não os tem) e dos demais. No centro, a oncosfera com seis ganchos."},
+  {t:"h3h", q:"No Echinococcus granulosus (hidatidose), a relação tamanho/hospedeiro é:",
+   o:["verme adulto gigante no homem","verme adulto minúsculo (3–6 mm) no cão; larva gigante (cisto hidático) no fígado/pulmão do homem, hospedeiro intermediário acidental","não há larva","o homem é o hospedeiro definitivo"], c:1,
+   e:"O adulto vive no intestino do cão (definitivo); o homem, ao engolir os ovos do cão, é intermediário acidental e desenvolve o cisto hidático, que cresce por anos. É o paradoxo: adulto minúsculo, larva enorme."},
+  {t:"h3h", q:"A regra de ouro na conduta do cisto hidático é NÃO puncioná-lo às cegas porque:",
+   o:["ele é inofensivo","a ruptura despeja líquido antigênico (anafilaxia, pois há IgE) e protoescólices (disseminação de novos cistos)","isso não muda nada","o cisto é sólido"], c:1,
+   e:"O líquido hidático é riquíssimo em antígenos, e o organismo já está sensibilizado (IgE). Romper o cisto pode causar anafilaxia grave e semear novos cistos. Por isso a via percutânea, quando indicada, é o PAIR, com albendazol de proteção."},
+  {t:"h3h", q:"O diagnóstico da hidatidose (como o da cisticercose) baseia-se em:",
+   o:["exame de fezes do paciente","imagem (ultrassom/TC, às vezes com vesículas-filhas) e sorologia (antígeno B)","cultura de sangue","teste de pele apenas"], c:1,
+   e:"O homem não tem o verme adulto (que está no cão) e não elimina ovos; o diagnóstico é por imagem — o cisto no fígado/pulmão, por vezes com vesículas-filhas — e pela sorologia contra o antígeno B do parasito."},
+
+  {t:"h3s", q:"Uma peculiaridade do Schistosoma entre os trematódeos é que ele:",
+   o:["é hermafrodita como os demais","tem SEXOS SEPARADOS, e vive em casal permanente (a fêmea alojada no canal ginecóforo do macho), nas veias","não tem ventosas","vive no intestino como a tênia"], c:1,
+   e:"O Schistosoma é a exceção: dioico e permanentemente acasalado — o macho, dobrado em canaleta (canal ginecóforo), abriga a fêmea. O casal vive nas veias mesentéricas, de onde a fêmea põe os ovos."},
+  {t:"h3s", q:"A assinatura diagnóstica do ovo do Schistosoma mansoni (o do Brasil) é:",
+   o:["um espículo terminal, na urina","um espículo (espinho) LATERAL, encontrado nas fezes","dois tampões polares","a camada mamilonada"], c:1,
+   e:"O ovo do S. mansoni é grande, com espículo lateral, e sai nas fezes. O espículo terminal (na urina) é do S. haematobium, de outras regiões. No Brasil, o nosso é o mansoni, de espinho lateral."},
+  {t:"h3s", q:"A infecção humana pelo Schistosoma ocorre quando:",
+   o:["bebe-se água com o verme","a cercária (liberada pelo caramujo) penetra ativamente a PELE de quem entra na água contaminada","come-se carne de porco","é picado por mosquito"], c:1,
+   e:"Não se pega bebendo: a cercária, saída do caramujo, penetra a pele ao contato com a água (banho, lavar roupa, pescar). Pode causar dermatite cercariana no local. Depois migra e amadurece nas veias."},
+  {t:"h3s", q:"A 'regra do caramujo' na esquistossomose significa que:",
+   o:["o caramujo é o hospedeiro definitivo","o Schistosoma depende do caramujo Biomphalaria como hospedeiro intermediário, onde a larva se multiplica — controlar o caramujo controla a doença","o caramujo é imune","o homem infecta o caramujo pela pele"], c:1,
+   e:"Todo trematódeo passa por um molusco: no S. mansoni é a Biomphalaria, onde o miracídio se multiplica em milhares de cercárias. Sem o caramujo, no ambiente contaminado por fezes, não há transmissão."},
+  {t:"h3s", q:"Na esquistossomose, 'a doença é o ovo, não o verme' porque:",
+   o:["o verme adulto é que fibrosa o fígado diretamente","os ovos retidos nos tecidos geram granulomas (Th2), e a soma deles, com a IL-13, fibrosa o fígado","o ovo é tóxico por si só, sem reação imune","o verme não põe ovos"], c:1,
+   e:"O verme adulto vive discreto nas veias; são os ovos presos no intestino e no fígado que provocam os granulomas. A repetição milhares de vezes, com a IL-13, deposita colágeno e fibrosa o órgão — a base da doença."},
+  {t:"h3s", q:"A forma hepatoesplênica grave (a 'barriga d'água') resulta de:",
+   o:["insuficiência hepática por destruição difusa do fígado (como na cirrose)","fibrose de Symmers (periportal) → hipertensão portal → esplenomegalia, varizes e ascite, com função hepática preservada por muito tempo","anemia por perda de sangue","obstrução intestinal"], c:1,
+   e:"A fibrose ao redor dos vasos porta (Symmers) estrangula o fluxo e causa hipertensão portal (baço grande, varizes, ascite). Diferente da cirrose, o problema é vascular e a função hepática se preserva; o grande risco é a hemorragia de varizes."},
+  {t:"h3s", q:"Sobre diagnóstico e tratamento da esquistossomose, é correto:",
+   o:["diagnóstico por sorologia apenas; sem tratamento","diagnóstico pelo ovo nas fezes (Kato-Katz, quantitativo) ou biópsia retal; tratamento com praziquantel","tratamento com triclabendazol","não há como diagnosticar"], c:1,
+   e:"O Kato-Katz conta os ovos por grama (a doença é dose-dependente); na baixa carga, a biópsia retal ajuda. O tratamento é o praziquantel. Na fase aguda (febre de Katayama), os ovos ainda podem não aparecer nas fezes."},
+
+  {t:"h3f", q:"A fasciolíase (Fasciola hepatica) é adquirida por:",
+   o:["a cercária penetrando a pele, como no Schistosoma","comer plantas aquáticas cruas (ex.: agrião) com metacercárias encistadas","picada de inseto","comer carne de boi"], c:1,
+   e:"A cercária da Fasciola não penetra a pele: encista-se numa planta aquática (metacercária), e a pessoa se infecta ao comer a planta crua (o agrião é o exemplo clássico). É uma infecção de origem alimentar."},
+  {t:"h3f", q:"Uma exceção terapêutica importante entre os trematódeos é que a Fasciola hepatica:",
+   o:["responde ao praziquantel como o Schistosoma","NÃO responde bem ao praziquantel; o tratamento de escolha é o triclabendazol","não tem tratamento","trata-se com albendazol em dose única"], c:1,
+   e:"Ao contrário das tênias e do Schistosoma (praziquantel), a Fasciola é tratada com triclabendazol. 'Praziquantel para quase tudo, menos a Fasciola' é um ponto fino que costuma cair em prova."},
+  {t:"h3f", q:"O plano de corpo típico do trematódeo (excetuando o Schistosoma) inclui:",
+   o:["corpo em fita segmentado","corpo foliáceo, com duas ventosas (oral e ventral) e hermafroditismo","ausência de ventosas","sexos separados"], c:1,
+   e:"O trematódeo é foliáceo, com ventosa oral e acetábulo (ventral), tubo digestivo incompleto e é hermafrodita — salvo o Schistosoma, de sexos separados. A Fasciola segue o padrão hermafrodita."},
+  {t:"h3f", q:"Na fase aguda (migratória) da fasciolíase, o exame de fezes costuma ser negativo porque:",
+   o:["o verme já morreu","a larva ainda está migrando pelo fígado e os adultos não chegaram às vias biliares nem começaram a pôr ovos","a Fasciola não põe ovos","o ovo é invisível"], c:1,
+   e:"Na fase aguda, a larva perfura e atravessa o fígado (dor, febre, eosinofilia intensa), mas ainda não há adultos nas vias biliares pondo ovos — daí o exame de fezes negativo. Valem a história (agrião), a imagem e a sorologia."},
+
+  {t:"h3i", q:"Sobre a resposta imune contra os cestódeos (as tênias/larvas), o mais correto é dizer que ela é:",
+   o:["puramente Th1","puramente Th2","MISTA — Th1, Th2 e reguladora (Treg) atuam juntas, mudando a proporção conforme o cisto está vivo ou morrendo","inexistente"], c:2,
+   e:"A resposta aos cestódeos não é 'ou Th1 ou Th2': os três braços coexistem. Com o cisto vivo predominam Th2/Treg (tolerância, silêncio); quando o cisto morre, o Th1 entra com força (inflamação) — é sempre uma mistura, muda a dose."},
+  {t:"h3i", q:"O cisticerco vivo permanece 'quieto' no tecido (pouca inflamação) porque:",
+   o:["o corpo não o reconhece nunca","ele modula ativamente a resposta, empurrando-a para o perfil regulador/Th2 (tolerância); ao morrer, expõe antígenos e desencadeia o Th1 inflamatório","não é um ser vivo","está morto desde o início"], c:1,
+   e:"O metacestódeo vivo é um imunomodulador: induz IL-10/Treg e evita o Th1 que o mataria, mantendo a trégua. A sua morte quebra essa contenção e libera a inflamação — a base da neurocisticercose sintomática."},
+  {t:"h3i", q:"Na hidatidose, a evasão imune do cisto do Echinococcus apoia-se, entre outros, em:",
+   o:["um flagelo","a camada laminada (parede acelular espessa) e moléculas como o antígeno B, que favorecem tolerância/Th2","a produção de muco","a invasão do sangue"], c:1,
+   e:"A camada laminada isola o cisto (grande demais para ser fagocitado) e o antígeno B modula a resposta para Th2/regulação, inibindo neutrófilos — assim o cisto cresce em silêncio por anos. Costuma haver eosinofilia."},
+  {t:"h3i", q:"A anafilaxia na ruptura do cisto hidático é uma reação de:",
+   o:["hipersensibilidade tardia (tipo IV)","hipersensibilidade imediata (tipo I): mastócitos revestidos de IgE degranulam ao contato maciço com o antígeno do líquido hidático","autoimunidade","imunodeficiência"], c:1,
+   e:"Anos de pequenos vazamentos sensibilizam o organismo (IgE); a ruptura despeja o antígeno de uma vez, os mastócitos degranulam e sobrevém a hipersensibilidade tipo I (anafilaxia). É a imunologia por trás de 'não puncionar o cisto às cegas'."}
+];
+
+/* ============ ESTADO ============ */
+let selTemas = new Set(Object.keys(TEMAS));
+let mode = "estudo";
+let numChoice = 15;
+let pool = [], idx = 0, answered = false, score = 0, results = [];
+let student = {nome:"", matricula:"", turma:""};
+let roster = [];
+let formspreeUrl = FORMSPREE_ENDPOINT;
+
+/* ============ INIT ============ */
+document.getElementById('stTotal').textContent = QUESTIONS.length;
+document.getElementById('stTemas').textContent = Object.keys(TEMAS).length;
+(function initChips(){
+  const c = document.getElementById('temaChips');
+  Object.entries(TEMAS).forEach(([k,v])=>{
+    const n = QUESTIONS.filter(q=>q.t===k).length;
+    const el = document.createElement('button');
+    el.className='chip on'; el.style.setProperty('--tag',v.cor); el.dataset.k=k;
+    el.innerHTML=`<span class="dot"></span>${v.nome} <span style="opacity:.6;font-weight:700">(${n})</span>`;
+    el.onclick=()=>{ if(selTemas.has(k)){selTemas.delete(k);el.classList.remove('on');} else {selTemas.add(k);el.classList.add('on');} refreshNums(); };
+    c.appendChild(el);
+  });
+})();
+function syncChips(){ document.querySelectorAll('#temaChips .chip').forEach(el=>el.classList.toggle('on',selTemas.has(el.dataset.k))); }
+function selAll(on){ selTemas = on? new Set(Object.keys(TEMAS)) : new Set(); syncChips(); refreshNums(); }
+function selAula(a){ selTemas = new Set(Object.keys(TEMAS).filter(k=>TEMAS[k].aula===a)); syncChips(); refreshNums(); }
+function refreshNums(){
+  const avail = QUESTIONS.filter(q=>selTemas.has(q.t)).length;
+  const sel = document.getElementById('numSel'); sel.innerHTML='';
+  const opts = [5,10,15,20,30].filter(n=>n<avail); opts.push(avail);
+  const uniq=[...new Set(opts)];
+  if(!uniq.includes(numChoice)) numChoice = uniq[Math.min(2,uniq.length-1)];
+  uniq.forEach(n=>{
+    const b=document.createElement('button'); b.className='numbtn'+(n===numChoice?' on':'');
+    b.textContent = n===avail? `Todas (${avail})` : n;
+    b.onclick=()=>{ numChoice=n; refreshNums(); };
+    sel.appendChild(b);
+  });
+  updateStart();
+}
+refreshNums();
+function setMode(m){ mode=m; document.querySelectorAll('.mode').forEach(el=>el.classList.toggle('on',el.dataset.mode===m)); }
+function updateStart(){
+  const avail = QUESTIONS.filter(q=>selTemas.has(q.t)).length;
+  const nome = document.getElementById('fNome').value.trim();
+  document.getElementById('startBtn').disabled = (avail===0 || nome.length<2);
+}
+
+/* ============ FLUXO ============ */
+function shuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function buildPool(list){
+  let base = list ? list : QUESTIONS.filter(q=>selTemas.has(q.t));
+  if(document.getElementById('shuffleChk').checked) base=shuffle([...base]); else base=[...base];
+  if(!list) base = base.slice(0, numChoice);
+  pool = base.map(q=>{
+    let order=[0,1,2,3];
+    if(document.getElementById('shuffleChk').checked) order=shuffle(order);
+    return {ref:q, order, correctPos:order.indexOf(q.c)};
+  });
+}
+function startQuiz(){
+  const nome=document.getElementById('fNome').value.trim();
+  if(selTemas.size===0 || nome.length<2) return;
+  student = {nome, matricula:document.getElementById('fMat').value.trim(), turma:document.getElementById('fTurma').value.trim()};
+  document.getElementById('whoami').innerHTML = `👤 <b>${escapeHtml(student.nome)}</b>${student.turma?' · '+escapeHtml(student.turma):''}`;
+  buildPool(null);
+  idx=0; score=0; results=[];
+  show('quiz'); renderQ();
+}
+function show(id){ ['start','quiz','results'].forEach(s=>document.getElementById(s).classList.toggle('hide',s!==id)); window.scrollTo({top:0,behavior:'smooth'}); }
+function toStart(){ show('start'); }
+
+function renderQ(){
+  answered=false;
+  const item=pool[idx], q=item.ref;
+  document.getElementById('qcount').textContent=`Questão ${idx+1} de ${pool.length}`;
+  document.getElementById('qscore').textContent=`Acertos: ${score}`;
+  const tg=document.getElementById('qtema'); tg.textContent=TEMAS[q.t].nome; tg.style.setProperty('--tag',TEMAS[q.t].cor); tg.style.background=TEMAS[q.t].cor;
+  document.getElementById('prog').style.width=`${(idx)/pool.length*100}%`;
+  document.getElementById('qtext').textContent=q.q;
+  const box=document.getElementById('opts'); box.innerHTML='';
+  const letters=['A','B','C','D'];
+  item.order.forEach((origIdx,pos)=>{
+    const b=document.createElement('button'); b.className='opt'; b.dataset.pos=pos;
+    b.innerHTML=`<span class="letter">${letters[pos]}</span><span>${q.o[origIdx]}</span>`;
+    b.onclick=()=>answer(pos);
+    box.appendChild(b);
+  });
+  document.getElementById('explain').classList.remove('show');
+  document.getElementById('nextBtn').classList.add('hide');
+  document.getElementById('hint').classList.remove('hide');
+}
+function answer(pos){
+  if(answered) return; answered=true;
+  const item=pool[idx], q=item.ref, correct=item.correctPos;
+  const correctNow = pos===correct;
+  if(correctNow) score++;
+  results.push({q, chosen:pos, correct, correctNow, order:item.order});
+  const opts=document.querySelectorAll('#opts .opt');
+  opts.forEach(o=>{
+    o.classList.add('locked');
+    const p=+o.dataset.pos;
+    if(mode==='estudo'){
+      if(p===correct){ o.classList.add('correct'); o.querySelector('.mark')||o.insertAdjacentHTML('beforeend','<span class="mark" style="color:var(--ok)">✔</span>'); }
+      else if(p===pos){ o.classList.add('wrong'); o.insertAdjacentHTML('beforeend','<span class="mark" style="color:var(--bad)">✕</span>'); }
+      else o.classList.add('dim');
+    } else {
+      if(p===pos){ o.style.borderColor='var(--primary)'; o.style.background='var(--tealTint)'; }
+    }
+  });
+  document.getElementById('qscore').textContent=`Acertos: ${score}`;
+  document.getElementById('prog').style.width=`${(idx+1)/pool.length*100}%`;
+  if(mode==='estudo'){
+    const ex=document.getElementById('explain');
+    document.getElementById('exIcon').textContent = correctNow?'✔':'✕';
+    const v=document.getElementById('exVerdict');
+    v.textContent = correctNow? `Correto — alternativa ${['A','B','C','D'][correct]}` : `Resposta correta: alternativa ${['A','B','C','D'][correct]}`;
+    v.className = 'ans'+(correctNow?'':' no');
+    document.getElementById('exText').textContent=q.e;
+    ex.classList.add('show');
+  }
+  document.getElementById('hint').classList.add('hide');
+  const nb=document.getElementById('nextBtn'); nb.classList.remove('hide');
+  nb.textContent = idx===pool.length-1? 'Ver resultado ▸' : 'Próxima ▸';
+  nb.focus();
+}
+function nextQ(){ if(!answered) return; if(idx<pool.length-1){ idx++; renderQ(); } else finish(); }
+
+function finish(){
+  const total=pool.length, pct=Math.round(score/total*100);
+  document.getElementById('rWho').textContent = student.nome;
+  document.getElementById('rPct').textContent=pct;
+  document.getElementById('rRaw').textContent=`${score} de ${total}`;
+  document.getElementById('rMode').textContent=mode;
+  const msgs = pct>=90?"Excelente domínio do conteúdo!":pct>=70?"Bom desempenho — revise os pontos marcados.":pct>=50?"No caminho: vale reforçar os temas mais fracos.":"Hora de revisar o material das aulas com calma.";
+  document.getElementById('rMsg').textContent=msgs;
+  const byTema={}; results.forEach(r=>{ const k=r.q.t; (byTema[k]=byTema[k]||{ok:0,n:0}); byTema[k].n++; if(r.correctNow)byTema[k].ok++; });
+  const bars=document.getElementById('bars'); bars.innerHTML='';
+  Object.keys(TEMAS).forEach(k=>{ if(!byTema[k])return; const d=byTema[k]; const p=Math.round(d.ok/d.n*100);
+    bars.insertAdjacentHTML('beforeend',`<div class="bar"><div class="row"><span>${TEMAS[k].nome}</span><span><b>${d.ok}/${d.n}</b> · ${p}%</span></div><div class="track"><div class="fill" style="width:${p}%;background:${TEMAS[k].cor}"></div></div></div>`);
+  });
+  const rev=document.getElementById('review'); rev.innerHTML='';
+  results.forEach((r,i)=>{
+    const q=r.q; const yourTxt=q.o[r.order[r.chosen]]; const corrTxt=q.o[q.c];
+    rev.insertAdjacentHTML('beforeend',
+      `<div class="rev ${r.correctNow?'ok':''}">
+        <div class="tt" style="--tag:${TEMAS[q.t].cor};color:${TEMAS[q.t].cor}">${TEMAS[q.t].nome}</div>
+        <div class="q">${i+1}. ${escapeHtml(q.q)}</div>
+        ${r.correctNow? `<div class="line cor">✔ Você acertou: ${escapeHtml(corrTxt)}</div>` :
+          `<div class="line you">✕ Sua resposta: ${escapeHtml(yourTxt)}</div><div class="line cor">✔ Correta: ${escapeHtml(corrTxt)}</div>`}
+        <div class="cm">${escapeHtml(q.e)}</div>
+      </div>`);
+  });
+  const wrong = results.filter(r=>!r.correctNow).length;
+  document.getElementById('redoWrong').style.display = wrong? 'inline-flex':'none';
+  // registrar + enviar
+  const entry = {
+    nome:student.nome, matricula:student.matricula, turma:student.turma,
+    acertos:score, total, percentual:pct, modo:mode,
+    temas:[...selTemas].map(k=>TEMAS[k].nome).join('; '),
+    data:new Date().toLocaleString('pt-BR')
+  };
+  roster.push(entry); renderRoster();
+  submitToFormspree(entry);
+  show('results');
+}
+function restart(which){
+  if(which==='wrong'){ const wrongQs=results.filter(r=>!r.correctNow).map(r=>r.q); if(!wrongQs.length){toStart();return;} buildPool(wrongQs); }
+  else buildPool(null);
+  idx=0; score=0; results=[]; show('quiz'); renderQ();
+}
+
+/* ============ FORMSPREE ============ */
+function submitToFormspree(entry){
+  const url=(formspreeUrl||'').trim();
+  const st=document.getElementById('sendStatus');
+  if(!/formspree\.io\/f\//.test(url)){
+    st.className='statusline muted';
+    st.textContent='ℹ️ Envio automático não configurado — a nota ficou registrada no painel do professor (nesta sessão).';
+    return false;
+  }
+  try{
+    const f=document.createElement('form');
+    f.action=url; f.method='POST'; f.target='fsFrame'; f.style.display='none';
+    const add=(k,v)=>{ const i=document.createElement('input'); i.type='hidden'; i.name=k; i.value=(v==null?'':String(v)); f.appendChild(i); };
+    add('_subject','Quiz Protozoários I e II — '+entry.nome);
+    add('Nome',entry.nome); add('Matricula',entry.matricula); add('Turma',entry.turma);
+    add('Acertos',entry.acertos+'/'+entry.total); add('Percentual',entry.percentual+'%');
+    add('Modo',entry.modo); add('Temas',entry.temas); add('Data',entry.data);
+    document.body.appendChild(f); f.submit(); setTimeout(()=>f.remove(),5000);
+    st.className='statusline ok';
+    st.textContent='✓ Resultado enviado à professora ('+entry.nome+' · '+entry.percentual+'%).';
+    return true;
+  }catch(err){
+    st.className='statusline bad';
+    st.textContent='⚠️ Não foi possível enviar automaticamente — a nota está no painel do professor. Use "Baixar CSV".';
+    return false;
+  }
+}
+
+/* ============ ÁREA DO PROFESSOR ============ */
+function openProf(){
+  document.getElementById('profModal').classList.remove('hide');
+  document.getElementById('profGate').classList.remove('hide');
+  document.getElementById('profPanel').classList.add('hide');
+  document.getElementById('pinInput').value='';
+  document.getElementById('pinErr').style.display='none';
+  setTimeout(()=>document.getElementById('pinInput').focus(),50);
+}
+function closeProf(){ document.getElementById('profModal').classList.add('hide'); }
+function checkPin(){
+  const v=document.getElementById('pinInput').value.trim();
+  if(v===PROF_PIN){
+    document.getElementById('profGate').classList.add('hide');
+    document.getElementById('profPanel').classList.remove('hide');
+    document.getElementById('fsUrl').value = formspreeUrl||'';
+    renderRoster();
+  } else {
+    document.getElementById('pinErr').style.display='block';
+  }
+}
+function saveFormspree(){
+  const v=document.getElementById('fsUrl').value.trim();
+  const st=document.getElementById('fsStatus');
+  if(v && !/formspree\.io\/f\//.test(v)){ st.style.color='var(--bad)'; st.textContent='Esse link não parece ser do Formspree (deve conter formspree.io/f/…).'; return; }
+  formspreeUrl=v;
+  st.style.color='var(--ok)'; st.textContent = v? '✓ Link salvo para esta sessão. Os próximos resultados serão enviados.' : 'Link limpo — envio automático desativado.';
+}
+function testSend(){
+  const prev=formspreeUrl; formspreeUrl=document.getElementById('fsUrl').value.trim();
+  const ok=submitToFormspree({nome:'TESTE (professora)',matricula:'-',turma:'-',acertos:0,total:0,percentual:0,modo:'teste',temas:'—',data:new Date().toLocaleString('pt-BR')});
+  const st=document.getElementById('fsStatus');
+  if(ok){ st.style.color='var(--ok)'; st.textContent='✓ Envio de teste disparado. Verifique seu e-mail/painel do Formspree (na 1ª vez, confirme o formulário pelo e-mail).'; }
+  else { st.style.color='var(--bad)'; st.textContent='Cole um link válido do Formspree antes de testar.'; formspreeUrl=prev; }
+}
+function renderRoster(){
+  const body=document.getElementById('rosterBody');
+  const empty=document.getElementById('rosterEmpty');
+  document.getElementById('rosterCount').textContent=roster.length;
+  if(!body) return;
+  body.innerHTML='';
+  if(!roster.length){ empty.style.display='block'; return; }
+  empty.style.display='none';
+  roster.forEach((r,i)=>{
+    const cor = r.percentual>=70?'var(--ok)':r.percentual>=50?'var(--goldDk)':'var(--bad)';
+    body.insertAdjacentHTML('beforeend',
+      `<tr><td>${i+1}</td><td><b>${escapeHtml(r.nome)}</b></td><td>${escapeHtml(r.matricula||'—')}</td><td>${escapeHtml(r.turma||'—')}</td>
+       <td>${r.acertos}/${r.total}</td><td class="pct" style="color:${cor}">${r.percentual}%</td><td>${r.modo}</td><td>${escapeHtml(r.data)}</td></tr>`);
+  });
+}
+function downloadCSV(){
+  if(!roster.length){ alert('Nenhum aluno finalizou o quiz nesta sessão ainda.'); return; }
+  const head=['Nome','Matrícula','Turma','Acertos','Total','Percentual','Modo','Temas','Data'];
+  const rows=roster.map(r=>[r.nome,r.matricula,r.turma,r.acertos,r.total,r.percentual+'%',r.modo,r.temas,r.data]);
+  const esc=c=>'"'+String(c==null?'':c).replace(/"/g,'""')+'"';
+  const csv=[head,...rows].map(r=>r.map(esc).join(',')).join('\r\n');
+  const blob=new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='cadastro_alunos_quiz_protozoarios.csv'; document.body.appendChild(a); a.click(); a.remove();
+}
+function clearRoster(){ if(confirm('Apagar a lista desta sessão? (Baixe o CSV antes, se quiser guardar.)')){ roster=[]; renderRoster(); } }
+
+/* ============ UTIL ============ */
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('profModal').classList.contains('hide') && e.key==='Escape'){ closeProf(); return; }
+  if(document.getElementById('quiz').classList.contains('hide')) return;
+  if(['1','2','3','4'].includes(e.key)){ const pos=+e.key-1; const b=document.querySelector(`#opts .opt[data-pos="${pos}"]`); if(b&&!answered) b.click(); }
+  else if(e.key==='Enter' && answered){ nextQ(); }
+});
+updateStart();
+</script>
+</body>
+</html>
